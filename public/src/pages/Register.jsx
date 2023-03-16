@@ -33,95 +33,88 @@ const Register = () => {
   };
   return (
     <>
-      <div>Register</div>
       <div className="login">
-        <div className="loginWrapper">
-          <div className="loginLeft">
-            <h3 className="loginLogo">Gamers-DEN</h3>
-            <span className="loginDesc"></span>
-          </div>
-          <div className="loginRight">
-            <div className="loginBox">
-              <form onSubmit={handleSubmit} className="login">
-                <div className="loginWrapper">
-                  <div className="loginLeft">
-                    <h2 className="loginLogo">Welcome to Gamers DEN</h2>
-                    {/* <h3 className="loginLogo">Gamers-DEN</h3> */}
-                    <span className="loginDesc"></span>
-                  </div>
-                  <div className="loginRight">
-                    <div className="loginBox">
-                      {/* <input placeholder="Email" className="loginInput" /> */}
-                      <label htmlFor="firstName">firstName:</label>
-                      <input
-                        className="loginInput"
-                        type="text"
-                        id="firstName"
-                        value={values.firstName}
-                        onChange={(event) =>
-                          setValues({
-                            ...values,
-                            firstName: event.target.value,
-                          })
-                        }
-                        required
-                      />
-                      <label htmlFor="secondName">lastName:</label>
-                      <input
-                        className="loginInput"
-                        type="text"
-                        id="lastName"
-                        value={values.lastName}
-                        onChange={(event) =>
-                          setValues({
-                            ...values,
-                            lastName: event.target.value,
-                          })
-                        }
-                        required
-                      />
+        <div className="login">
+          <form onSubmit={handleSubmit}>
+            <div className="loginWrapper">
+              <div className="loginLeft">
+                <h2 className="loginLogo">Welcome to Gamers DEN</h2>
+                {/* <h3 className="loginLogo">Gamers-DEN</h3> */}
+                <span className="loginDesc"></span>
+              </div>
+              <div className="loginRight">
+                <div className="loginBox">
+                  {/* <input placeholder="Email" className="loginInput" /> */}
+                  <label htmlFor="firstName">firstName:</label>
+                  <input
+                    className="loginInput"
+                    type="text"
+                    id="firstName"
+                    value={values.firstName}
+                    onChange={(event) =>
+                      setValues({
+                        ...values,
+                        firstName: event.target.value,
+                      })
+                    }
+                    required
+                  />
+                  <label htmlFor="secondName">lastName:</label>
+                  <input
+                    className="loginInput"
+                    type="text"
+                    id="lastName"
+                    value={values.lastName}
+                    onChange={(event) =>
+                      setValues({
+                        ...values,
+                        lastName: event.target.value,
+                      })
+                    }
+                    required
+                  />
 
-                      {/* <input placeholder="Email" className="loginInput" /> */}
-                      <label htmlFor="email">Email:</label>
-                      <input
-                        className="loginInput"
-                        type="email"
-                        id="email"
-                        value={values.email}
-                        onChange={(event) =>
-                          setValues({ ...values, email: event.target.value })
-                        }
-                        required
-                      />
-                      {/* <input placeholder="Password" className="loginInput" /> */}
-                      <label htmlFor="password">Password:</label>
-                      <input
-                        className="loginInput"
-                        type="password"
-                        id="password"
-                        value={values.password}
-                        onChange={(event) =>
-                          setValues({ ...values, password: event.target.value })
-                        }
-                        required
-                      />
-                      <button className="loginButton" type="submit">
-                        Register
-                      </button>
-                      {/* <button className="loginButton">Log In</button> */}
-                    </div>
-                  </div>
+                  {/* <input placeholder="Email" className="loginInput" /> */}
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    className="loginInput"
+                    type="email"
+                    id="email"
+                    value={values.email}
+                    onChange={(event) =>
+                      setValues({ ...values, email: event.target.value })
+                    }
+                    required
+                  />
+                  {/* <input placeholder="Password" className="loginInput" /> */}
+                  <label htmlFor="password">Password:</label>
+                  <input
+                    className="loginInput"
+                    type="password"
+                    id="password"
+                    value={values.password}
+                    onChange={(event) =>
+                      setValues({ ...values, password: event.target.value })
+                    }
+                    required
+                  />
+                  <button className="loginButton" type="submit">
+                    Register
+                  </button>
+                  {/* <button className="loginButton">Log In</button> */}
                 </div>
-              </form>
-              {/* <input placeholder="Username" className="loginInput" />
+              </div>
+            </div>
+          </form>
+          <div>
+            <button className="loginButton">Log into Account</button>
+          </div>
+        </div>
+        {/* <input placeholder="Username" className="loginInput" />
               <input placeholder="Email" className="loginInput" />
               <input placeholder="Password" className="loginInput" />
                */}
-              {/* <button className="loginButton">Sign Up</button> */}
-              <button className="loginRegisterButton">Log into Account</button>
-            </div>
-          </div>
-        </div>
+        {/* <button className="loginButton">Sign Up</button> */}
       </div>
     </>
   );

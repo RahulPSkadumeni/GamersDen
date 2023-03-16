@@ -56,7 +56,7 @@ const HeaderComponent = () => {
             <span className="topbarIconBadge">1</span>
           </div>
           <div className="topbarIconItem">
-            <AiOutlineLogout onClick={dispatch(setLogout())} />
+            <AiOutlineLogout onClick={() => dispatch(setLogout())} />
             <span className=""></span>
           </div>
         </div>
