@@ -1,0 +1,32 @@
+
+
+
+.admincontainer{
+width: 100vw;
+height: 50px;
+background-color: #1877f2;
+display: flex;
+align-items:center ;
+position:sticky;
+
+top:0;
+}
+.adminLeft{
+ flex: 2.5;
+ background-color: blueviolet;
+}
+
+.adminRight{
+flex:9.5;
+background-color: aquamarine;
+
+}
+.Adminheadercontainer{
+    width: 100vw;
+    height: 50px;
+    background-color: #1877f2;
+    display: flex;
+    align-items:center ;
+    justify-content: center;
+    top:0;
+    }

@@ -1,0 +1,15 @@
+.headerNotification{
+   flex:8;
+    max-width: 1000px;
+    min-width: 500px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+.notification{
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+.ContentNotification{
+    font-size: 12px;
+}

@@ -1,0 +1,206 @@
+.feed{
+    
+    flex:8;
+    color: #f6f6f6;
+    /* background-image: linear-gradient(
+        60deg,
+        hsl(239deg 53% 43%) 0%,
+        hsl(258deg 70% 40%) 34%,
+        hsl(275deg 82% 38%) 77%,
+        hsl(291deg 90% 38%) 100%
+      ); */
+}
+.feedWrapper{
+    padding: 20;
+}
+
+
+  .game { 
+    margin-left: 10px;
+    border-radius: 0.625rem;
+    height: 132px;
+    width: 98px;
+    background-color: #ffffff;
+  }
+ 
+  
+  .text-3 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: Poppins;
+    line-height: auto;
+    color: #ffffff;
+  }
+  .Gfeed{
+    flex:8;
+    color: #f6f6f6;
+  
+    
+  }
+  .GfeedWrapper{
+    display: flex;
+    margin-left: 20;
+
+  }
+  .FeaturedCommunity{
+    font-size: 20px;
+
+  }
+
+
+  
+  .component-4 {
+   
+   
+    margin: 20px;
+    height: 208px;
+    width: 320px;
+   
+  }
+  .frame-3-7-0-6 {
+    opacity: 0.20000000298023224;
+    height: 208px;
+    width: 320px;
+    background-color: #1b1717;
+  }
+  .featured-card-2 {
+    height: 308px;
+    width: 320px;
+    background-color: #554848;
+  }
+  .featured-card-2 {
+    
+    border-radius: 20px;
+    height: 240px;
+    width: 320px;
+    background-color: #2c2f48;
+    border: 1px solid ;
+  }
+  .img-1 {
+    height: 348px;
+    width: 335px;
+  }
+  .polygon-3 {
+    color: aqua;
+    height: 64px;
+    width: 64px;
+  }
+  .avatar {
+    height: 64px;
+    width: 64px;
+  }
+  .polygon-1 {
+    height: 64px;
+    width: 64px;
+  }
+  .content {
+    margin-top:-30px ;
+    display: flex;
+   
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    gap: 8px;
+  }
+  .text-2 {
+    margin-top: 36px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 22px;
+    font-weight: 600;
+    
+
+   
+  }
+  .text-3 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 13px;
+    font-family: Lato;
+    line-height: auto;
+    color: rgba(255, 255, 255, 0.550000011920929);
+  }
+  .members {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .frame-1-2-9-0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+  }
+  .text-4 {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    font-family: SF Compact Display;
+    line-height: auto;
+    color: rgba(255, 255, 255, 0.25);
+  }
+  .text-5 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: Lato;
+    line-height: auto;
+    color: rgba(255, 255, 255, 0.25);
+  }
+  .frame-1-2-9-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+  }
+  .text-6 {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    font-family: SF Compact Display;
+    line-height: auto;
+    color: rgba(201, 198, 198, 0.979);
+  }
+  .text-7 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: Lato;
+    line-height: auto;
+    color: rgba(192, 184, 184, 0.658);
+  }
+
+  .Imagegroup{
+    border-radius: 20px;
+  }
+  .head{
+    display: flex;
+    
+    justify-content: space-between;
+  }
+  .JoinButton{
+    width: max-content;
+    height: fit-content;
+    background-color: rgb(56, 214, 226);
+    align-items: center;
+    padding: 3px;
+    margin-left: 60px;
+    margin-top: 30px;
+    border-radius: 5px;
+  }
+  .clsgrp{
+    display: grid;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  
+   
+    
+  }

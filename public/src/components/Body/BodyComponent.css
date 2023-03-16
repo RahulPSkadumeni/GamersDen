@@ -1,0 +1,4 @@
+.homeContainer{
+    background-color: linear-gradient(to right top, #051937, #242b67, #5b3694, #9f34b6, #eb12ca);;
+    display: flex;
+}

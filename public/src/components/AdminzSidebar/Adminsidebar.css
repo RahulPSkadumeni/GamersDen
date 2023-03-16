@@ -1,0 +1,55 @@
+.sideBar{
+    padding-top: 5px;
+    padding-left: 5px;
+    flex:2;
+color: #f6f6f6;
+    background-color:#4A436E;
+    
+    height:100vh
+    /* overflow-y: scroll;
+    position: sticky;
+    top: 50px;}
+
+
+    
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #514355;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179); */
+  } 
+
+
+    .sidbarWrap{
+        background-color: #4A436E;
+        padding: 20px;
+        cursor: pointer;
+       
+
+    }
+    .SidebarIcon{
+        margin-right: 15px;
+        background-color: hwb(0 100% 0%);
+        color: #4A436E;
+        border-radius: 5px;
+    }
+    .SidebarListItem{
+
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .sidebarList {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      
+
+      .adminpic{
+        width: px;
+
+      }

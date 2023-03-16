@@ -1,0 +1,53 @@
+.rigthBarFriend{
+     /* padding-top: 5px; */
+   
+}
+
+.rigthBarFollowing{
+  display:flex;
+  justify-content: center;
+  
+
+}
+.rigthBarFollowingImage{
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  
+  
+}
+.rightbarFriendLists{
+      
+ 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-right: 10px;
+  max-width: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #231E39;
+  border-radius: 5px;
+  box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.75);
+  padding-bottom: 5px;
+  
+  
+
+}
+
+.rigthBarFollowing{
+  display: flex;
+  flex-direction: row;
+ 
+  margin: 5px;
+}
+.friendlistClass{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
