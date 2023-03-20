@@ -13,6 +13,7 @@ const Register = () => {
     password: "",
     firstName: "",
     lastName: "",
+    phoneNumber: "",
   });
 
   const navigate = useNavigate();
@@ -83,6 +84,18 @@ const Register = () => {
                     value={values.email}
                     onChange={(event) =>
                       setValues({ ...values, email: event.target.value })
+                    }
+                    required
+                  />
+                  {/* <input placeholder="Email" className="loginInput" /> */}
+                  <label htmlFor="email">phone no:</label>
+                  <input
+                    className="loginInput"
+                    type="number"
+                    id="phoneNumber"
+                    value={values.phoneNumber}
+                    onChange={(event) =>
+                      setValues({ ...values, phoneNumber: event.target.value })
                     }
                     required
                   />

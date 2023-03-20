@@ -117,6 +117,10 @@ function Login() {
               <button className="loginButton" type="submit">
                 Log In
               </button>
+
+              <span>
+                <a href="/otp_login">login using OTP</a>
+              </span>
               {/* <button className="loginButton">Log In</button> */}
             </div>
           </div>

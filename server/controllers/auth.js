@@ -7,8 +7,9 @@ import User from "../models/User.js";
 //  calling mongoose data base ,so should async  req api call=from from end res= respond to the frontend //
 
 export const register = async (req, res) => {
+  console.log("user detail in register  controller", req.body);
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, phoneNumber, email, password } = req.body;
     const salt = await bcrypt.genSalt(); //use this for salt password
 
     const passwordHash = await bcrypt.hash(password, salt); // hash password using salt and password;
@@ -22,6 +23,7 @@ export const register = async (req, res) => {
       firstName,
       lastName,
       email,
+      phoneNumber,
       password: passwordHash,
       viewedProfile: Math.floor(Math.random() * 1000),
       impressions: Math.floor(Math.random() * 1000),
@@ -37,7 +39,7 @@ export const register = async (req, res) => {
 /* LOGIN  */
 export const login = async (req, res) => {
   try {
-    /* destructure email and password fro req.body */
+    /* destructure email and password from req.body */
     const { email, password } = req.body;
     console.log(req.body);
     const user = await User.findOne({ email: email });
@@ -56,5 +58,62 @@ export const login = async (req, res) => {
     res.status(200).json({ token, user });
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+
+// my code for otp login
+
+export const OtpLogin = async (req, res) => {
+  try {
+    /* destructure email and password from req.body */
+    const { phoneNumber } = req.body;
+    console.log(req.body);
+    const user = await User.findOne({ phoneNumber: phoneNumber });
+    if (!user) {
+      return res.status(400).json({ msg: "User dose not exist." });
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+    /* don"t want to send password back to front end*/
+
+    res.status(200).json({ token, user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const CheckPhone = async (req, res) => {
+  try {
+    let { phoneNo } = req.body;
+
+    console.log(phoneNo);
+    const user = await User.findOne({ phoneNumber: phoneNo });
+    console.log(user);
+    if (!user) {
+      return res.status(400).json({ msg: "User dose not exist." });
+    }
+    res.status(200).json({ userExist: true });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const CreateJwt = async (req, res) => {
+  let { phoneNo } = req.body;
+  console.log(phoneNo, " inside controller createJwt");
+  try {
+    const user = await User.findOne({ phoneNumber: phoneNo });
+    if (!user) {
+      return res.status(400).json({ msg: "User dose not exist." });
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+    /* don"t want to send password back to front end*/
+    console.log(token);
+    res.status(200).json({ token, user });
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };

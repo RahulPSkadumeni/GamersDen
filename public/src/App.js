@@ -6,6 +6,7 @@ import GroupPage from "./pages/Groups/GroupPage";
 
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login";
+import Otp_login from "./pages/Otp_login";
 import Notification from "./pages/Notification/Notifications";
 import Profilepage from "./pages/Profilepage/Profilepage";
 import Register from "./pages/Register";
@@ -28,6 +29,7 @@ const App = () => {
           path="/register"
           element={!isAuth ? <Register /> : <Navigate to="/" />}
         />
+        <Route path="/otp_login" element={<Otp_login />} />
         <Route
           path="/login"
           element={!isAuth ? <Login /> : <Navigate to="/" />}
