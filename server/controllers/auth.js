@@ -104,6 +104,7 @@ export const CreateJwt = async (req, res) => {
   console.log(phoneNo, " inside controller createJwt");
   try {
     const user = await User.findOne({ phoneNumber: phoneNo });
+    console.log(user);
     if (!user) {
       return res.status(400).json({ msg: "User dose not exist." });
     }

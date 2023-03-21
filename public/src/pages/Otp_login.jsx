@@ -13,12 +13,17 @@ import { toast, Toaster } from "react-hot-toast";
 import { checkPhone } from "../api/usersApi/user";
 import { createJwt } from "../api/usersApi/user";
 import { number } from "yup";
+import { useNavigate } from "react-router-dom";
+import { setLogin } from "./state";
+import { useDispatch } from "react-redux";
 export default function Otp_login() {
+  const dispatch = useDispatch();
   const [otp, setOtp] = useState("");
   const [ph, setPh] = useState("");
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   console.log(ph, "pppppppppppppppppppppppppppppppppp");
   const handlePhoneNumber = () => {
     console.log("Inside handle phoneno", ph);
@@ -33,6 +38,16 @@ export default function Otp_login() {
   const createToken = () => {
     console.log("create token inside otplogin:jsx");
     createJwt(ph).then((result) => {
+      console.log(result);
+
+      dispatch(
+        setLogin({
+          token: result.token,
+          user: result.user,
+        })
+      );
+      navigate("/");
+
       console.log("token creation completed");
     });
   };
@@ -85,6 +100,7 @@ export default function Otp_login() {
       .confirm(otp)
       .then(async (res) => {
         await createToken(ph);
+
         console.log(res);
         setUser(res.user);
         setLoading(false);

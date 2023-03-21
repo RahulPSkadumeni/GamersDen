@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+
 import "./login.css";
-import Form from "./Form";
 
 // const Login = () => {
 //   const theme = useTheme();
