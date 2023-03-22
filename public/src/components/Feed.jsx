@@ -10,8 +10,8 @@ const Feed = () => {
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Banner />
-        <Share />
+        {/* <Banner /> */}
+        {/* <Share /> */}
         {Posts.map((p) => (
           <Post key={p.id} post={p} />
         ))}

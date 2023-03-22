@@ -112,8 +112,8 @@ export default function Otp_login() {
   }
 
   return (
-    <section className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ... flex items-center justify-center h-screen">
-      <div>
+    <section className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 ... flex items-center justify-center h-screen">
+      <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 ... ">
         <Toaster toastOptions={{ duration: 4000 }} />
         <div id="recaptcha-container"></div>
         {user ? (
@@ -122,7 +122,7 @@ export default function Otp_login() {
             {/* 👍 Login Success */}
           </h2>
         ) : (
-          <div className="w-90 flex flex-col gap-4 rounded-lg p-4">
+          <div className="w- flex flex-col gap-4 rounded-lg p-4">
             <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
               Welcome to Gamers-DEN
             </h1>
@@ -133,7 +133,7 @@ export default function Otp_login() {
                 </div>
                 <label
                   htmlFor="otp"
-                  className="font-bold text-l text-white text-center"
+                  className="font-bold text-l text-white text-center sm:text-left"
                 >
                   Enter your OTP
                 </label>
@@ -168,11 +168,11 @@ export default function Otp_login() {
                   Verify your phone number
                 </label>
                 <input
-                  type={number}
+                  type="Number"
                   name="phone"
                   country={"in"}
                   value={ph}
-                  // onChange={setPh} />
+                  //  onChange={setPh} />
                   onChange={(e) => setPh(e.target.value)}
                 />
 
