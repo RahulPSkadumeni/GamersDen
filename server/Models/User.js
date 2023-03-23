@@ -13,6 +13,12 @@ const UserSchema = new mongoose.Schema(
       min: 2,
       max: 50,
     },
+    userName: {
+      type: String,
+      require: true,
+      max: 50,
+      unique: true,
+    },
     phoneNumber: {
       type: Number,
       required: true,
@@ -36,11 +42,38 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+
+    followers: {
+      type: Array,
+      default: [],
+    },
+    followings: {
+      type: Array,
+      default: [],
+    },
+
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    desc: {
+      type: String,
+      max: 50,
+    },
+    city: {
+      type: String,
+      max: 50,
+    },
+    from: {
+      type: String,
+    },
+
     location: String,
     occupation: String,
     viewedProfile: Number,
     impressions: Number,
   },
+
   { timestamps: true } //automatic data when it created updated etc//
 );
 

@@ -1,9 +1,10 @@
 import React from "react";
-import "./Post.css";
+// import "./Post.css";
 import { useState } from "react";
 // import { MoreVert } from '@mui/icons-material'
 // import {MoreVert} from '@mui/icons-material';
 import { Users } from "../../dummyData";
+import { likeimg, AiTwotoneLike } from "react-icons/ai";
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
@@ -17,13 +18,13 @@ const Post = ({ post }) => {
   // console.log(user[0].username);
   // console.log(post);
   return (
-    <div className="post">
+    <div className="bg-zinc-400/90 font-mono w rounded-3xl text-center  p-6 mt-5">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
             {/* https://png.pngtree.com/png-clipart/20190516/original/pngtree-purple-samurai-e-sports-logo-for-gaming-mascot-or-twitch-profile-png-image_4278450.jpg */}
             <img
-              className="postProfileImg"
+              className=" r"
               src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
               alt="profilepic"
             />
@@ -37,13 +38,14 @@ const Post = ({ post }) => {
           <div className="postTopRight"></div>
         </div>
         <div className="postCenter">
-          <span className="postText">
+          <span className=" left-0 text-left ">
             {post?.desc}
             {/* After just a single round of Player Unknown's Battlegrounds Mobile,
             I was hooked. The game runs well and feels authentic. It even has
             that delicious tension that I love from the PC version of the…{" "} */}
           </span>
           <img
+            className="object-cover object-fill"
             src="https://i0.wp.com/ramenswag.com/wp-content/uploads/2018/12/101-PlayerUnknown_s-Battlegrounds-HD-Wallpapers-_-Background-Images-...-1.jpg?resize=1024%2C576&ssl=1"
             alt=""
           />
