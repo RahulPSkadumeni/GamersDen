@@ -102,26 +102,20 @@ router.get("/:id", async (req, res) => {
 });
 // // get all post(Timeline)
 
-router.get("/timeline/all", allTimeline);
-// async (req, res) => {
-//   console.log("currentUser");
-//   try {
-//     const currentUser = await User.findById(req.body.userId);
+router.get("/timeline/:id", allTimeline);
 
-//     const userPosts = await Post.find({ userId: currentUser._id });
-
-//     const friendPosts = await Promise.all(
-//       currentUser.followers.map((friendId) => {
-//         console.log(friendId);
-//         return Post.find({ userId: friendId });
-//       })
-//     );
-
-//     res.json(userPosts.concat(...friendPosts));
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// }
+router.get("/profile/:username", async (req, res) => {
+  console.log(req.params.username);
+  try {
+    const user = await User.findOne({ userName: req.params.username });
+    console.log(user);
+    const posts = await Post.find({ userId: user._id });
+    console.log(user);
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // unlike a post
 //get a post

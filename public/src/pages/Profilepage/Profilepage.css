@@ -1,59 +1,49 @@
-/* .profile{
-    display: flex;
-    color: #f4f4f4;
-
+.profile {
+  display: flex;
+  color: #726969;
 }
-.profileRight{
-    flex: 9;
-
+.profileRight {
+  flex: 9;
 }
-.profileRightBottom{
- display: flex;
+.profileRightBottom {
+  display: flex;
 }
 
-.profileCoverImage{
-    width: 100%;
-    height: 300px;
-   object-fit: cover;
-  
-    
+.profileCoverImage {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
-.profileCover{
+.profileCover {
   height: 320px;
   position: relative;
 }
 
-.profileUserImage{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin:auto;
-   top:210px;
-   padding: 7px;
-   border: 2px solid #03BFCB;
-   
-   
-    
+.profileUserImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 210px;
+  padding: 7px;
+  border: 2px solid #03bfcb;
 }
-.profileInfo{
-    padding-top: 30px;
-    display: flex;
-     flex-direction: column; 
-     align-items: center; 
-     justify-content: baseline; 
-
+.profileInfo {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Iceland');
+@import url("https://fonts.googleapis.com/css?family=Iceland");
 h3 {
-    
-    font-size: 40px;
-    font-family:Iceland;
-	margin: 10px 0;
+  font-size: 40px;
+  font-family: Iceland;
+  margin: 10px 0;
 }
-.status{
-   
-} */
+.status {
+}

@@ -13,7 +13,7 @@ const Home = () => {
   // }, []);
   return (
     <div className="HomeContainer">
-      {/* <HeaderComponent /> */}
+      <HeaderComponent />
 
       <BodyComponent />
     </div>

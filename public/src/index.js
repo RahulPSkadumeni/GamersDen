@@ -19,6 +19,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import AppRouter from "./App";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
@@ -37,7 +38,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistStore(store)}>
-        <AppRouter />
+        <AuthContextProvider>
+          <AppRouter />
+        </AuthContextProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>

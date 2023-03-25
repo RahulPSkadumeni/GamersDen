@@ -10,7 +10,7 @@ import "./BodyComponent.css";
 const BodyComponent = () => {
   return (
     <div className="homeContainer">
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Feed />
       <RightbarHome />
     </div>

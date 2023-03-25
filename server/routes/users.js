@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 // import User from "../Models/User.js";
 import User from "../models/User.js";
-import { follow } from "../controllers/user.js";
+import { follow, getUser } from "../controllers/user.js";
 
 import { verifyToken } from "../middleware/authorization.js";
 
@@ -16,10 +16,10 @@ const router = express.Router();
 //unfollow
 //get
 
-router.get("/", (req, res) => {
-  console.log("its user routes");
-  res.send("haii");
-});
+// router.get("/", (req, res) => {
+//   console.log("its user routes");
+//   res.send("haii");
+// });
 
 router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -57,16 +57,7 @@ router.delete("/:id", async (req, res) => {
 });
 //?? get user//
 
-router.get("/:id", async (req, res) => {
-  try {
-    console.log(req.params.id);
-    const user = await User.findById(req.params.id);
-
-    res.status(200).json(user);
-  } catch (err) {
-    console.log(err);
-  }
-});
+router.get("/", getUser);
 
 //??follow or unfollow//
 

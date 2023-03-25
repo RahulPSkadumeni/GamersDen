@@ -17,7 +17,7 @@ export const allTimeline = async (req, res) => {
 
   console.log("currentUser");
   try {
-    const currentUser = await User.findById(req.body.userId);
+    const currentUser = await User.findById(req.params.id);
 
     const userPosts = await Post.find({ userId: currentUser.id });
 

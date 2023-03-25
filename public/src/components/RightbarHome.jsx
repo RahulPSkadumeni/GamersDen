@@ -14,9 +14,9 @@ export default function RightbarHome({ profile }) {
 
         <FriendsCard className="rightbarFriendList" />
 
-        <h4 className="rightbarTitle"> Friends Request</h4>
+        {/* <h4 className="rightbarTitle"> Friends Request</h4>
 
-        <FriendsRequestCard className="rightbarFriendList" />
+        <FriendsRequestCard className="rightbarFriendList" /> */}
       </>
     );
   };

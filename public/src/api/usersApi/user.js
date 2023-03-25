@@ -17,6 +17,7 @@ export const register = async (userDetails) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userDetails),
   });
+
   return response.json();
 };
 

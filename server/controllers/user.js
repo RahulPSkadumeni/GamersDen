@@ -42,3 +42,18 @@ export const follow = async (req, res) => {
     res.status(403).json("you cant follow yourself");
   }
 };
+
+export const getUser = async (req, res) => {
+  const userId = req.query.userId;
+  const userName = req.query.userName;
+  try {
+    console.log(req.params.id);
+    const user = userId
+      ? await User.findById(req.params.id)
+      : await User.findOne({ userName: userName });
+    console.log(user);
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+  }
+};

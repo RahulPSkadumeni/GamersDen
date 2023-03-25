@@ -19,49 +19,51 @@ import { useDispatch } from "react-redux";
 const HeaderComponent = () => {
   const dispatch = useDispatch();
   return (
-    <div className="header">
-      <div className="topbarleft">
-        <Logo />
-      </div>
-      <div className="topbarCenter">
-        <div className="searchbar">
-          {/* <Search className='searchIcon'/> */}
-          <FaSearch className="searchIcon" />
-          <input
-            type="text"
-            placeholder="Search for post,friends, any videos..."
-            className="searchInput"
-          />
+    <>
+      <div className="header sticky ">
+        <div className="topbarleft">
+          <Logo />
         </div>
-      </div>
+        <div className="topbarCenter">
+          <div className="searchbar">
+            {/* <Search className='searchIcon'/> */}
+            <FaSearch className="searchIcon" />
+            <input
+              type="text"
+              placeholder="Search for post,friends, any videos..."
+              className="searchInput"
+            />
+          </div>
+        </div>
 
-      <div className="topbarRight">
-        {/*  <ul className='topbarIcon'>
+        <div className="topbarRight">
+          {/*  <ul className='topbarIcon'>
                 <li><SettingsSharp/></li>
                 <li>1<ChatBubbleOutlineSharp/></li>
                 <li>2<NotificationAddSharp/></li>
                 <li><LogoutSharp/></li>
             </ul> */}
-        <div className="topbarIcons">
-          <div className="topbarIconItem">
-            {/* <SettingsSharp /> */} <IoSettingsSharp size={"1.3rem"} />
-            <span className="topbarIconBadge">1</span>
-          </div>
-          <div className="topbarIconItem">
-            <BsChatRight />
-            <span className="topbarIconBadge">2</span>
-          </div>
-          <div className="topbarIconItem">
-            <IoNotificationsSharp />
-            <span className="topbarIconBadge">1</span>
-          </div>
-          <div className="topbarIconItem">
-            <AiOutlineLogout onClick={() => dispatch(setLogout())} />
-            <span className=""></span>
+          <div className="topbarIcons">
+            <div className="topbarIconItem">
+              {/* <SettingsSharp /> */} <IoSettingsSharp size={"1.3rem"} />
+              <span className="topbarIconBadge">1</span>
+            </div>
+            <div className="topbarIconItem">
+              <BsChatRight />
+              <span className="topbarIconBadge">2</span>
+            </div>
+            <div className="topbarIconItem">
+              <IoNotificationsSharp />
+              <span className="topbarIconBadge">1</span>
+            </div>
+            <div className="topbarIconItem">
+              <AiOutlineLogout onClick={() => dispatch(setLogout())} />
+              <span className=""></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

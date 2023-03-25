@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createBrowserRouter } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Admin from "./pages/admin/Admin";
 import GroupPages from "./pages/GroupPages/GroupPages";
@@ -7,8 +8,9 @@ import Test from "./pages/test";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login";
 import Otp_login from "./pages/Otp_login";
-import Notification from "./pages/Notification/Notifications";
 import Profilepage from "./pages/Profilepage/Profilepage";
+import Notification from "./pages/Notification/Notifications";
+
 import Register from "./pages/Register";
 import ErrorPage from "./error-page";
 //theme select//
@@ -40,10 +42,16 @@ const AppRouter = () => {
           path="/"
           element={isAuth ? <Home /> : <Navigate to="/login" />}
         />
+        <Route
+          path="/profile/:userName"
+          element={isAuth ? <Profilepage /> : <Navigate to="/" />}
+        />
 
         <Route path="/test" element={<Test />} />
-        {/* <Route exact path="/profile" element={<Profilepage />} />
-        <Route exact path="/notification" element={<Notification />} />
+
+        {/* <Route 
+         path="/profile" element={<Profilepage />} /> */}
+        {/*<Route exact path="/notification" element={<Notification />} />
         <Route exact path="/Group" element={<GroupPage />} />
         <Route exact path="/Groups" element={<GroupPages />} />
 

@@ -6,9 +6,10 @@ import { verifyToken } from "../middleware/authorization.js";
 /*setup routers  :  */
 const router = express.Router();
 // router("/login").post(verifyToken.lo)
+console.log("hai");
 router.post("/login", login);
 router.post("/otpLogin", OtpLogin);
-router.post("/checkphone", CheckPhone);
+router.post("/checkPhone", CheckPhone);
 router.post("/createJwt", CreateJwt);
 router.put("/:id/follow", follow);
 

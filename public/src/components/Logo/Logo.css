@@ -1,16 +1,8 @@
-.logo{
-    padding-left: 10px;
-    margin-bottom: 20px;
-    width: 170px;
-    justify-content: center;
-    align-items: center;
-   
-  
-}
+.logo {
+  /* padding-left: 10px; */
+  /* padding-bottom: 10px; */
 
-.Logo{
-    font-size: 24;
-    margin-left: 20px;
-    color:white;
-    cursor: pointer;
+  width: 170px;
+  justify-content: center;
+  align-items: center;
 }
