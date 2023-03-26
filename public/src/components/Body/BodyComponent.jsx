@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Feed from "../Feed";
 import Rightbar from "../Rightbar";
 import RightbarHome from "../RightbarHome";
@@ -8,11 +9,13 @@ import Sidebar from "../Sidebar";
 import "./BodyComponent.css";
 
 const BodyComponent = () => {
+  const user = useSelector((state) => state.user);
+  // console.log(user);
   return (
     <div className="homeContainer">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Feed />
-      <RightbarHome />
+      {/* <RightbarHome /> */}
     </div>
   );
 };

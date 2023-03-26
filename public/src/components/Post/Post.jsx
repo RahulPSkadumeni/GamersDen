@@ -3,7 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 
 import { useState } from "react";
-import { format } from "timeago.js";
+// import { format } from "timeago.js";
 import { likeimg, AiTwotoneLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const Post = ({ post }) => {
@@ -15,11 +15,11 @@ const Post = ({ post }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`users/${post.userId}`);
-      console.log(res.data);
+      // console.log(res.data);
       setUser(res.data);
     };
     fetchUser();
-    console.log(fetchUser());
+    // console.log(fetchUser());
   }, [post.userId]);
 
   // useEffect(() => {
@@ -43,10 +43,10 @@ const Post = ({ post }) => {
   // console.log(user[0].username);
   // console.log(post);
   return (
-    <div className="bg-zinc-400/90 font-mono w rounded-3xl text-center  p-6 mt-5">
+    <div className="bg-zinc-200/90 font-mono w rounded-3xl text-center  p-6 mt-5">
       <div className="postWrapper">
         <div className="postTop">
-          <Link to={`profile/${user.userName}`}>
+          <Link to={`profile/${post.userId}`}>
             <div className="postTopLeft">
               {/* https://png.pngtree.com/png-clipart/20190516/original/pngtree-purple-samurai-e-sports-logo-for-gaming-mascot-or-twitch-profile-png-image_4278450.jpg */}
               <img
@@ -64,15 +64,18 @@ const Post = ({ post }) => {
             </div>
           </Link>
           <span className=" text-cyan-900 pl-2 align-baseline">
-            {format(post.createdAt)}
+            {/* {format(post.createdAt)} */}
           </span>
           {/* <MoreVert/> */}
 
           <div className="postTopRight"></div>
+          <div> </div>
         </div>
+        <span className="left-0 w-10/12"> {post?.des}</span>
+
         <div className="postCenter">
-          <span className=" ">
-            {post?.des}
+          <span className="text-left">
+            {/* {post?.des} */}
             {/* After just a single round of Player Unknown's Battlegrounds Mobile,
             I was hooked. The game runs well and feels authentic. It even has
             that delicious tension that I love from the PC version of the…{" "} */}

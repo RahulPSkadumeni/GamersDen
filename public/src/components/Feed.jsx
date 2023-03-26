@@ -8,26 +8,61 @@ import { Posts } from "../../src/dummyData";
 import Banner from "./Banner/Banner";
 import axios from "axios";
 import { getPosts } from "../api/postApi/post";
+import { useSelector } from "react-redux";
 
-const Feed = ({ username }) => {
+const Feed = ({ userId, isProfile = false }) => {
   const [posts, setPosts] = useState([]);
-
+  // const [user, setUser] = useState([]);
   const [text, setText] = useState([]);
 
+  const user = useSelector((state) => state.user);
+  // console.log(user);
   useEffect(() => {
     try {
-      const fetchPost = async () => {
-        const res = username
-          ? await axios.get("/posts/profile/" + username)
-          : await axios.get("posts/timeline/641b143fd898a10c1edab56d");
-        console.log(res);
-        setPosts(res.data);
-      };
       fetchPost();
     } catch (error) {
       console.log(error);
     }
   }, []);
+
+  const fetchPost = async () => {
+    if (isProfile) {
+      console.log("profikeeeeeeee");
+      let res = await axios.get("/posts/profile/" + userId);
+      console.log(res);
+      setPosts(res.data);
+    } else {
+      console.log("timelineeeeeeeeeeeeeeeeee");
+      const res = await axios.get("posts/timeline/" + user._id);
+      console.log(res);
+      setPosts(res.data);
+    }
+  };
+  // fetchPost();
+  console.log(posts.length);
+  // const Feed = () => {
+  //   const [posts, setPosts] = useState([]);
+  //   // const [user, setUser] = useState([]);
+  //   const [text, setText] = useState([]);
+
+  //   const user = useSelector((state) => state.user);
+  //   console.log(user);
+  //   useEffect(() => {
+  //     try {
+  //       const fetchPost = async () => {
+  //         const res =
+  //           //  await axios.get("/posts/profile/" + user.userName)
+  //           // :
+
+  //           await axios.get("posts/timeline/" + user._id);
+  //         console.log(res);
+  //         setPosts(res.data);
+  //       };
+  //       fetchPost();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }, []);
 
   // useEffect(() => {
   //   const allPost = async () => {
@@ -40,7 +75,7 @@ const Feed = ({ username }) => {
   // }, []);
 
   return (
-    <div className="feed">
+    <div className="bg-slate-600">
       <div className="feedWrapper" style={{ margin: "100px" }}>
         {/* <input
           className="bg-white"

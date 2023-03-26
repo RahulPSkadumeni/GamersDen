@@ -43,7 +43,7 @@ const AppRouter = () => {
           element={isAuth ? <Home /> : <Navigate to="/login" />}
         />
         <Route
-          path="/profile/:userName"
+          path="/profile/:userId"
           element={isAuth ? <Profilepage /> : <Navigate to="/" />}
         />
 

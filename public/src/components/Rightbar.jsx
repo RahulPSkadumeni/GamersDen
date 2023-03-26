@@ -6,8 +6,14 @@ import Profile from "./ProfileCard/Profile";
 import "./Rightbar.css";
 
 import { User } from "../dummyData";
+import { useSelector } from "react-redux";
 
 export default function Rightbar({ profile }) {
+  const user = useSelector((state) => state.user);
+
+  if (!user) {
+    return null;
+  }
   const HomeRightBar = () => {
     return (
       <>
@@ -24,6 +30,11 @@ export default function Rightbar({ profile }) {
   };
 
   const ProfileRightBar = () => {
+    const user = useSelector((state) => state.user);
+
+    if (!user) {
+      return null;
+    }
     return (
       // "rigthBarFriend">
       //   <div className="rightbar"></div>
@@ -34,21 +45,22 @@ export default function Rightbar({ profile }) {
         <div className="Rightbarinfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfokey">City:</span>
-            <span className="rightbarInfoValue">Ernakulam:</span>
+            <span className="rightbarInfoValue">{user.city}:</span>
           </div>
 
           <div className="rightbarInfoItem">
             <span className="rightbarInfokey">From:</span>
-            <span className="rightbarInfoValue">Kannur</span>
+            <span className="rightbarInfoValue">{user.from}</span>
           </div>
 
           <div className="rightbarInfoItem">
-            <span className="rightbarInfokey">Relationship:</span>
-            <span className="rightbarInfoValue">Single</span>
+            <span className="rightbarInfokey">occupation:</span>
+            <span className="rightbarInfoValue">{user.occupation}</span>
           </div>
         </div>
 
         <h4>User Friends</h4>
+
         <FriendsList />
         {/* <FriendsCard/> */}
       </div>

@@ -3,7 +3,7 @@ import FriendsCard from "./friendsCard/FriendsCard";
 import FriendsList from "./friendslist/FriendsList";
 import FriendsRequestCard from "./friendsRequestCard/FriendsRequestCard";
 import Profile from "./ProfileCard/Profile";
-import "./Rightbar.css";
+// import "./Rightbar.css";
 
 export default function RightbarHome({ profile }) {
   const HomeRightBar = () => {
