@@ -4,7 +4,14 @@ import bcrypt from "bcrypt";
 
 // import User from "../Models/User.js";
 import User from "../models/User.js";
-import { follow, getUser } from "../controllers/user.js";
+import {
+  follow,
+  updateUser,
+  deleteUser,
+  findUser,
+  getUserFriends,
+  addRemoveFriend,
+} from "../controllers/user.js";
 
 import { verifyToken } from "../middleware/authorization.js";
 
@@ -16,48 +23,53 @@ const router = express.Router();
 //unfollow
 //get
 
-// router.get("/", (req, res) => {
-//   console.log("its user routes");
-//   res.send("haii");
-// });
-
-router.put("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
-    if (req.body.password) {
-      try {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
-      } catch {
-        return res.status(500).json(err);
-      }
-    }
-    try {
-      const user = await User.findByIdAndUpdate(req.params.id, {
-        $set: req.body,
-      });
-      res.status(300).json("account has been updated");
-    } catch {}
-  } else {
-    return res.status(403).json("you can  update only your account");
-  }
+router.get("/", (req, res) => {
+  console.log("its user routes");
+  res.send("haii");
 });
+
+router.put(
+  "/:id",
+  updateUser
+  //  async (req, res) => {
+  //   if (req.body.userId === req.params.id || req.body.isAdmin) {
+  //     if (req.body.password) {
+  //       try {
+  //         const salt = await bcrypt.genSalt(10);
+  //         req.body.password = await bcrypt.hash(req.body.password, salt);
+  //       } catch {
+  //         return res.status(500).json(err);
+  //       }
+  //     }
+  //     try {
+  //       const user = await User.findByIdAndUpdate(req.params.id, {
+  //         $set: req.body,
+  //       });
+  //       res.status(300).json("account has been updated");
+  //     } catch {}
+  //   } else {
+  //     return res.status(403).json("you can  update only your account");
+  //   }
+  // }
+);
 
 //!!delete user
 
-router.delete("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
-    try {
-      const user = await User.findByIdAndDelete(req.params.id);
-      res.status(300).json("account has been deleted");
-      console.log("account deleted");
-    } catch {}
-  } else {
-    return res.status(403).json("you can delete only  your account");
-  }
-});
+router.delete("/:id", deleteUser);
+// async (req, res) => {
+//   if (req.body.userId === req.params.id || req.body.isAdmin) {
+//     try {
+//       const user = await User.findByIdAndDelete(req.params.id);
+//       res.status(300).json("account has been deleted");
+//       console.log("account deleted");
+//     } catch {}
+//   } else {
+//     return res.status(403).json("you can delete only  your account");
+//   }
+// };
 //?? get user//
 
-router.get("/", getUser);
+router.get("/:id", findUser);
 
 //??follow or unfollow//
 
@@ -69,15 +81,15 @@ router.put("/:id/unfollow", async (req, res) => {
   //   console.log("not found");
   //   return res.status(404).json("user not found");
   // }
-  let userId = req.body.userId;
-  User.findOne({ _id: userId }, (err, user) => {
-    if (err) {
-      console.log(err);
-      res.json("user not found");
-      return;
-    }
-    console.log(user); // the user document with the specified ID
-  });
+  // let userId = req.body.userId;
+  // User.findById({ _id: userId }, (err, user) => {
+  //   if (err) {
+  //     console.log(err);
+  //     res.json("user not found");
+  //     return;
+  //   }
+  //   console.log(user); // the user document with the specified ID
+  // });
   if (req.body.userId !== req.params.id) {
     console.log(req.body.userId);
 
@@ -151,4 +163,6 @@ router.put("/:id/unfollow", async (req, res) => {
 //   }
 // });
 
+router.get("/:id/friends", getUserFriends);
+router.patch("/:id/:friendId", addRemoveFriend);
 export default router;

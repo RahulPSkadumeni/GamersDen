@@ -13,6 +13,10 @@ const PostSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
+    picturePath: {
+      type: String,
+      max: 100,
+    },
     likes: {
       type: Array,
       default: [],

@@ -1,7 +1,8 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
 export const createPost = async (req, res) => {
-  console.log("ppost");
+  console.log("ppost>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+  console.log(req.body);
   const newPost = new Post(req.body);
   try {
     const savePost = await newPost.save();
@@ -23,7 +24,7 @@ export const allTimeline = async (req, res) => {
 
     const friendPosts = await Promise.all(
       currentUser.followers.map((friendId) => {
-        console.log(friendId);
+        // console.log(friendId);
         return Post.find({ userId: friendId });
       })
     );

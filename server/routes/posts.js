@@ -104,13 +104,13 @@ router.get("/:id", async (req, res) => {
 
 router.get("/timeline/:id", allTimeline);
 
-router.get("/profile/:username", async (req, res) => {
-  console.log(req.params.username);
+router.get("/profile/:id", async (req, res) => {
+  console.log(req.params.id);
   try {
-    const user = await User.findOne({ userName: req.params.username });
+    const user = await User.findOne({ _id: req.params.id });
     console.log(user);
     const posts = await Post.find({ userId: user._id });
-    console.log(user);
+    console.log(posts);
     res.json(posts);
   } catch (error) {
     res.status(500).json(error);
