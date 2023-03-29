@@ -8,14 +8,18 @@ import { Posts } from "../../src/dummyData";
 import Banner from "./Banner/Banner";
 import axios from "axios";
 import { getPosts } from "../api/postApi/post";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../pages/state";
 
 const Feed = ({ userId, isProfile = false }) => {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   // const [user, setUser] = useState([]);
   const [text, setText] = useState([]);
-
+  const [content, setContent] = useState("");
   const user = useSelector((state) => state.user);
+  const posts = useSelector((state) => state.posts);
+
+  const dispatch = useDispatch();
   // console.log(user);
   useEffect(() => {
     try {
@@ -27,15 +31,24 @@ const Feed = ({ userId, isProfile = false }) => {
 
   const fetchPost = async () => {
     if (isProfile) {
-      console.log("profikeeeeeeee");
+      // console.log("profikeeeeeeee");
       let res = await axios.get("/posts/profile/" + userId);
-      console.log(res);
-      setPosts(res.data);
+      // console.log(res);
+      // setPosts(res.data);
+      dispatch(
+        setPosts({
+          posts: res.data,
+        })
+      );
     } else {
-      console.log("timelineeeeeeeeeeeeeeeeee");
+      // console.log("timelineeeeeeeeeeeeeeeeee");
       const res = await axios.get("posts/timeline/" + user._id);
-      console.log(res);
-      setPosts(res.data);
+      // console.log(res);
+      dispatch(
+        setPosts({
+          posts: res.data,
+        })
+      );
     }
   };
   // fetchPost();
@@ -83,7 +96,7 @@ const Feed = ({ userId, isProfile = false }) => {
           onChange={(e) => setText(e.target.value)}
         /> */}
         {/* <Banner /> */}
-        <Share />
+        <Share content={content} setContent={setContent} />
 
         {posts.map((p) => (
           <Post key={p._id} post={p} />
