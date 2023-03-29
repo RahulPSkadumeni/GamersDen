@@ -1,7 +1,7 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
 export const createPost = async (req, res) => {
-  console.log("ppost>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+  console.log("first");
   console.log(req.body);
   const newPost = new Post(req.body);
   try {
@@ -42,13 +42,25 @@ export const like = async (req, res) => {
     if (!post.likes.includes(req.body.userId)) {
       console.log(post);
 
-      await post.updateOne({ $push: { likes: req.body.userId } });
-      res.status(200).json("you liked this post");
+      let postData = await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { likes: req.body.userId } },
+        { new: true }
+      );
+      console.log("postData");
+      console.log(postData);
+      console.log("postData");
+      res.status(200).json(postData);
     } else {
-      console.log(post);
-      console.log(req.body.userId);
-      await post.updateOne({ $pull: { likes: req.body.userId } });
-      res.status(200).json("you disliked this post");
+      let postData = await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $pull: { likes: req.body.userId } },
+        { new: true }
+      );
+      console.log("postData");
+      console.log(postData);
+      console.log("postData");
+      res.status(200).json(postData);
     }
   } catch (error) {
     res.status(500).json(error);

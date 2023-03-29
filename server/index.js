@@ -52,6 +52,15 @@ const upload = multer({ storage });
 
 /*routes with  FILES*/
 
+app.post("createPosts", (req, res) => {
+  try {
+    console.log("File uploaded successfully");
+    res.send("File uploaded successfully");
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
 /*_____________Route______________middleware__________ controller(_actual logic)_____*/
 app.post(
   "/auth/register",
@@ -65,7 +74,22 @@ app.post(
 app.use("/auth", authRoutes);
 
 app.use("/users", userRoutes);
+
 app.use("/posts", postRoutes);
+
+// app.use("/posts/createpost", async (req, res) => {
+//   console.log("first");
+//   console.log(req.body);
+//   console.log(req.file);
+// const newPost = new Post(req.body);
+// try {
+//   const savePost = await newPost.save();
+//   console.log(savePost);
+//   res.status(200).json(savePost + " new post created");
+// } catch (error) {
+//   res.status(500).json(error);
+// }
+// });
 /*mongoose setup*/
 const PORT = process.env.PORT || 6001;
 

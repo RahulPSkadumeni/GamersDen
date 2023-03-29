@@ -10,6 +10,7 @@ import axios from "axios";
 import { getPosts } from "../api/postApi/post";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../pages/state";
+import Create from "./share/Create";
 
 const Feed = ({ userId, isProfile = false }) => {
   // const [posts, setPosts] = useState([]);
@@ -89,7 +90,7 @@ const Feed = ({ userId, isProfile = false }) => {
 
   return (
     <div className="bg-slate-600">
-      <div className="feedWrapper" style={{ margin: "100px" }}>
+      <div className="" style={{ margin: "100px" }}>
         {/* <input
           className="bg-white"
           type="text"
@@ -97,7 +98,7 @@ const Feed = ({ userId, isProfile = false }) => {
         /> */}
         {/* <Banner /> */}
         <Share content={content} setContent={setContent} />
-
+        {/* <Create /> */}
         {posts.map((p) => (
           <Post key={p._id} post={p} />
         ))}

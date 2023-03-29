@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
 export default function NewPost() {
   const [file, setFile] = useState();
   const [caption, setCaption] = useState("");
@@ -11,7 +10,7 @@ export default function NewPost() {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("caption", caption);
-    await axios.post("localhost:3001/createpost", formData, {
+    await axios.post("/api/posts", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
   };
@@ -19,7 +18,7 @@ export default function NewPost() {
   return (
     <form onSubmit={submit}>
       <input
-        className="2xl"
+        className="w-20 bg-slate-600"
         onChange={(e) => setFile(e.target.files[0])}
         type="file"
         accept="image/*"

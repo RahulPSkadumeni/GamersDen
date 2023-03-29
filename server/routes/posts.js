@@ -1,25 +1,97 @@
 import express from "express";
 import { createPost, like } from "../controllers/post.js";
 import { allTimeline } from "../controllers/post.js";
-
+import multer from "multer";
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import crypto from "crypto";
+import {
+  S3Client,
+  PutObjectCommand,
+  AbortMultipartUploadCommand,
+} from "@aws-sdk/client-s3";
+import dotenv from "dotenv";
+import sharp from "sharp";
+
+dotenv.config();
+const randomImageName = (bytes = 32) =>
+  crypto.randomBytes(bytes).toString("hex");
+const bucketName = process.env.AWS_BUCKET_NAME;
+const region = process.env.AWS_BUCKET_REGION;
+const accessKeyId = process.env.AWS_ACCESS_KEY;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+const s3Client = new S3Client({
+  credentials: {
+    accessKeyId,
+    secretAccessKey,
+  },
+  region: region,
+});
 // const User = require("../Models/User");
 const router = express.Router();
-// create post
-router.post("/createpost", createPost);
+// const upload = multer({ dest: "posts/" });
 
-// async (req, res) => {
-//   console.log("ppost");
-//   const newPost = new Post(req.body);
-//   try {
-//     const savePost = await newPost.save();
-//     console.log(savePost);
-//     res.status(200).json(savePost + " new post created");
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// }
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+// create post
+router.post("/createpost", upload.single("postImg"), async (req, res) => {
+  console.log("first????????????????");
+  console.log(req.body);
+  console.log(req.file);
+
+  const newPost = new Post(req.body);
+  try {
+    const savePost = await newPost.save();
+    console.log(savePost);
+    res.status(200).json(savePost + " new post created");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post("/createpostImg", upload.single("image"), async (req, res) => {
+  console.log("first????????????????");
+
+  const file = req.file;
+  const des = req.body.des;
+  const buffer = await sharp(req.file.buffer)
+    .resize({
+      height: 1920,
+      width: 1080,
+      fit: "contain",
+    })
+    .toBuffer();
+  // console.log(des);
+  const image = randomImageName();
+  // console.log(">>>>>>>>>", file);
+  const uploadParams = {
+    Bucket: bucketName,
+    Body: buffer,
+    Key: image,
+    ContentType: req.file.mimetype,
+  };
+
+  const command = new PutObjectCommand(uploadParams);
+
+  await s3Client.send(command);
+
+  // const newPost = new Post(req.body);
+  const newPost = new Post({
+    des: req.body.des,
+    image: image,
+    userId: req.body.userId,
+  });
+  try {
+    const savePost = await newPost.save();
+    console.log(savePost);
+    res.status(200).json(savePost + " new post created");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+  res.send(newPost);
+});
 
 //update post
 router.put("/:id", async (req, res) => {
@@ -115,6 +187,11 @@ router.get("/profile/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
+});
+
+router.post("/createPosts", async (req, res) => {
+  console.log("fsanfj");
+  res.json("sdajh");
 });
 
 // unlike a post
