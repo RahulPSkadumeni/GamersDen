@@ -113,7 +113,7 @@ export default function Otp_login() {
 
   return (
     <section className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 ... flex items-center justify-center h-screen">
-      <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 ... ">
+      <div>
         <Toaster toastOptions={{ duration: 4000 }} />
         <div id="recaptcha-container"></div>
         {user ? (
@@ -123,12 +123,12 @@ export default function Otp_login() {
           </h2>
         ) : (
           <div className="w- flex flex-col gap-4 rounded-lg p-4">
-            <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
+            <h1 className="text-center leading-normal text-white font-medium text-4xl mb-8">
               Welcome to Gamers-DEN
             </h1>
             {showOTP ? (
               <>
-                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
+                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-lg">
                   <BsFillShieldLockFill size={30} />
                 </div>
                 <label
@@ -159,7 +159,7 @@ export default function Otp_login() {
             ) : (
               <>
                 <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                  <BsTelephoneFill size={30} />
+                  <BsTelephoneFill size={40} />
                 </div>
                 <label
                   htmlFor="otp"
@@ -168,6 +168,7 @@ export default function Otp_login() {
                   Verify your phone number
                 </label>
                 <input
+                  className=" py-2.5  rounded-lg !border-t-blue-gray-200 focus:!border-t-blue-500"
                   type="Number"
                   name="phone"
                   country={"in"}

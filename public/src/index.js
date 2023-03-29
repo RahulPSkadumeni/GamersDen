@@ -38,9 +38,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistStore(store)}>
-        <AuthContextProvider>
-          <AppRouter />
-        </AuthContextProvider>
+        {/* <AuthContextProvider> */}
+        <AppRouter />
+        {/* </AuthContextProvider> */}
       </PersistGate>
     </Provider>
   </React.StrictMode>

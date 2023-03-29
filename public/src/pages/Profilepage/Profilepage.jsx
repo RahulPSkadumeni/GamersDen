@@ -70,9 +70,9 @@ const Profilepage = () => {
       <div className="bg-emerald-700">
         <HeaderComponent />
         <div className="profile">
-          {/* <Sidebar /> */}
+          <Sidebar />
 
-          {/* <ProfileComponent /> */}
+          <ProfileComponent />
           <div className="profileRight">
             <div className="profileRightTop">
               <div className="profileCover">
@@ -118,7 +118,7 @@ const Profilepage = () => {
                 <Feed userId={userId} isProfile={true} />
               </div>
 
-              {/* <Rightbar /> */}
+              <Rightbar />
             </div>
           </div>
         </div>

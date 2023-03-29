@@ -6,16 +6,20 @@ import { useState } from "react";
 // import { format } from "timeago.js";
 import { likeimg, AiTwotoneLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setPost } from "../../pages/state";
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.like);
-  const [isLiked, setIsLiked] = useState(false);
+  const dispatch = useDispatch();
+  // const [isLiked, setIsLiked] = useState(false);
+  const currentUserId = useSelector((state) => state.user._id);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
+  const isliked = post.likes.includes(currentUserId);
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`users/${post.userId}`);
-      // console.log(res.data);
+      console.log(res.data);
       setUser(res.data);
     };
     fetchUser();
@@ -35,9 +39,24 @@ const Post = ({ post }) => {
   //   }
   // }, []);
 
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
+  const likeHandler = async () => {
+    const like = await axios.put(
+      `http://localhost:3001/posts/${post._id}/like`,
+      {
+        userId: currentUserId,
+      }
+    );
+    console.log(like);
+    // if()
+    // setLike();
+    dispatch(
+      setPost({
+        post: like.data,
+      })
+    );
+
+    // setLike(isLiked ? like - 1 : like + 1);
+    // setIsLiked(!isLiked);
   };
   // const user = Users.filter((u) => u.id === 1);
   // console.log(user[0].username);
@@ -89,18 +108,22 @@ const Post = ({ post }) => {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img
-              onClick={likeHandler}
-              className="likeIcon"
-              src="https://www.clipartmax.com/png/small/218-2189156_red-heart-emoji-icon-vector-symbol-instagram-heart-icon-png.png"
-              alt=""
-            />
-            <img
-              onClick={likeHandler}
-              className="likeIcon"
-              src="https://www.clipartmax.com/png/small/98-986734_top-masonic-blogs-comment-png.png"
-              alt=""
-            />
+            {isliked ? (
+              <img
+                onClick={likeHandler}
+                className="likeIcon"
+                src="https://www.clipartmax.com/png/small/218-2189156_red-heart-emoji-icon-vector-symbol-instagram-heart-icon-png.png"
+                alt=""
+              />
+            ) : (
+              <img
+                onClick={likeHandler}
+                className="likeIcon"
+                src="https://www.clipartmax.com/png/small/98-986734_top-masonic-blogs-comment-png.png"
+                alt=""
+              />
+            )}
+
             <span onClick={likeHandler} className="postLikeCounter">
               {post.likes.length} people like it
             </span>

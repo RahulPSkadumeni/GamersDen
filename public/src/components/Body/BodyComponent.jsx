@@ -15,7 +15,7 @@ const BodyComponent = () => {
     <div className="homeContainer">
       {/* <Sidebar /> */}
       <Feed />
-      {/* <RightbarHome /> */}
+      <RightbarHome />
     </div>
   );
 };

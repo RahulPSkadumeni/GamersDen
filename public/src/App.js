@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 // import { CssBaseline, ThemeProvider } from "@mui/material";
 // import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
+import NewPost from "./pages/admin/postpage";
 
 const AppRouter = () => {
   const mode = useSelector((state) => state.mode);
@@ -48,7 +49,7 @@ const AppRouter = () => {
         />
 
         <Route path="/test" element={<Test />} />
-
+        <Route path="/post" element={<NewPost />} />
         {/* <Route 
          path="/profile" element={<Profilepage />} /> */}
         {/*<Route exact path="/notification" element={<Notification />} />
