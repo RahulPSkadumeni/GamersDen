@@ -1,13 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-
+import { BsTrashFill } from "react-icons/bs";
 import { useState } from "react";
 // import { format } from "timeago.js";
 import { likeimg, AiTwotoneLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../pages/state";
+
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.like);
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const Post = ({ post }) => {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const isliked = post.likes.includes(currentUserId);
+  const token = useSelector((state) => state.token);
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`users/${post.userId}`);
@@ -58,11 +61,35 @@ const Post = ({ post }) => {
     // setLike(isLiked ? like - 1 : like + 1);
     // setIsLiked(!isLiked);
   };
+
+  const deleteHandler = async () => {
+    console.log(currentUserId);
+    const deletepost = await axios.delete(
+      `http://localhost:3001/posts/delete/${post._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          userId: currentUserId,
+        },
+      }
+    );
+
+    console.log(deletepost);
+
+    dispatch(
+      setPost({
+        post: post.data,
+      })
+    );
+  };
+
   // const user = Users.filter((u) => u.id === 1);
   // console.log(user[0].username);
   // console.log(post);
   return (
-    <div className="bg-zinc-200/90 font-mono w rounded-3xl text-center  p-6 mt-5">
+    <div className="bg-slate-400/90 font-mono w rounded-3xl text-center  p-6 mt-5">
       <div className="postWrapper">
         <div className="postTop">
           <Link to={`profile/${post.userId}`}>
@@ -86,12 +113,16 @@ const Post = ({ post }) => {
             {/* {format(post.createdAt)} */}
           </span>
           {/* <MoreVert/> */}
-
-          <div className="postTopRight"></div>
+          <div className="w-11/12"></div>
+          <button
+            onClick={deleteHandler}
+            className=" p-3 text-center text-red-700   rounded-full  hover:bg-red-700 hover:text-white "
+          >
+            <BsTrashFill size={"30px"} />
+          </button>
           <div> </div>
         </div>
-        <span className="left-0 w-10/12"> {post?.des}</span>
-
+        <div className="left-0 w-10/12"> {post?.des}</div>
         <div className="postCenter">
           <span className="text-left">
             {/* {post?.des} */}
@@ -100,9 +131,9 @@ const Post = ({ post }) => {
             that delicious tension that I love from the PC version of the…{" "} */}
           </span>
           <img
-            className="object-cover object-fill"
-            // src={PF + "/public/images/post"}
-            src="https://i0.wp.com/ramenswag.com/wp-content/uploads/2018/12/101-PlayerUnknown_s-Battlegrounds-HD-Wallpapers-_-Background-Images-...-1.jpg?resize=1024%2C576&ssl=1"
+            className=" w-430 h-768"
+            src={post.picturePath}
+            // src="https://i0.wp.com/ramenswag.com/wp-content/uploads/2018/12/101-PlayerUnknown_s-Battlegrounds-HD-Wallpapers-_-Background-Images-...-1.jpg?resize=1024%2C576&ssl=1"
             alt=""
           />
         </div>

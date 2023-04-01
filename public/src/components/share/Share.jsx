@@ -28,7 +28,7 @@ const Share = () => {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("des", caption);
-    formData.append("userId", user._id);
+    formData.append("userId", userid);
     await axios.post(" http://localhost:3001/posts/createpostImg", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -45,19 +45,34 @@ const Share = () => {
           />
 
           <form onSubmit={handlePost}>
+            <div className="grid grid-cols-2   ">
+              <textarea
+                className=" flex w-96 flex-col  gap-10 py-6"
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+                type="text"
+                placeholder="Caption"
+              ></textarea>
+              {/* <button type="submit">Submit</button> */}
+              <div className="items-center   align-middle justify-center">
+                <button
+                  type="submit"
+                  className="items-center ml-4  font-semibold align-middle w-4/12 rounded-full px-3 py-4  tracking-wide text-white bg-sky-400 text-xl shadow-2xl border border-slate-100/20 hover:scale-110 transition duration-300 ease-out  hover:shadow-fuchsia-600 active:translate-y-1"
+                >
+                  <span className="flex ml-3 py-2">
+                    <IoSendSharp />
+                    <div className="ml-3">Post</div>
+                  </span>
+                </button>
+              </div>
+            </div>
             <input
+              className="flex w-96 flex-col  gap-6"
               onChange={(e) => setFile(e.target.files[0])}
               type="file"
               accept="image/*"
               placeholder="add Image"
             ></input>
-            <input
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
-              type="text"
-              placeholder="Caption"
-            ></input>
-            <button type="submit">Submit</button>
           </form>
         </div>
         {/* ????????????????????????????? */}

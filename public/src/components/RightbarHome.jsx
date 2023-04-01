@@ -9,6 +9,7 @@ export default function RightbarHome({ profile }) {
   const HomeRightBar = () => {
     return (
       <>
+        <h1></h1>
         <Profile />
         <h4 className="rightbarTitle">Online Friends</h4>
 

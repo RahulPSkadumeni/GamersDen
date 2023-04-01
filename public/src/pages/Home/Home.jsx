@@ -52,7 +52,7 @@ const Home = () => {
 
   // console.log(state);
   return (
-    <div className="HomeContainer">
+    <div>
       <HeaderComponent />
       <BodyComponent />
     </div>

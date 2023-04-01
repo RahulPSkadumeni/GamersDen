@@ -11,11 +11,12 @@ import "./BodyComponent.css";
 const BodyComponent = () => {
   const user = useSelector((state) => state.user);
   // console.log(user);
+  let owner = true;
   return (
     <div className="homeContainer">
-      {/* <Sidebar /> */}
-      <Feed />
-      <RightbarHome />
+      <Sidebar />
+      {/* <Feed />
+      <RightbarHome /> */}
     </div>
   );
 };

@@ -89,7 +89,7 @@ const Feed = ({ userId, isProfile = false }) => {
   // }, []);
 
   return (
-    <div className="bg-slate-600">
+    <div className=" bg-slate-600">
       <div className="" style={{ margin: "100px" }}>
         {/* <input
           className="bg-white"
