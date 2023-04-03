@@ -14,6 +14,7 @@ const Register = () => {
     password: "",
     firstName: "",
     lastName: "",
+    userName: "",
     phoneNumber: "",
   });
 
@@ -88,6 +89,25 @@ const Register = () => {
                   }
                   required
                 />
+                <label
+                  className=" text-white font-thin text-2xl mb-6"
+                  htmlFor="secondName"
+                >
+                  userName:
+                </label>
+                <input
+                  className="text-3xl rounded-3xl loginInput"
+                  type="text"
+                  id="lastName"
+                  value={values.userName}
+                  onChange={(event) =>
+                    setValues({
+                      ...values,
+                      userName: event.target.value,
+                    })
+                  }
+                  required
+                />
 
                 {/* <input placeholder="Email" className="loginInput" /> */}
                 <label
@@ -114,7 +134,7 @@ const Register = () => {
                   phone no:
                 </label>
                 <input
-                  className="font-bold text-3xl rounded-3xl text-white text-center"
+                  className="font-bold text-3xl rounded-3xl  text-center"
                   type="number"
                   id="phoneNumber"
                   value={values.phoneNumber}

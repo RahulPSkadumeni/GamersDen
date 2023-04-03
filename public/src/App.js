@@ -21,6 +21,8 @@ import { useSelector } from "react-redux";
 import { themeSettings } from "./theme";
 import NewPost from "./pages/admin/postpage";
 import Test from "./pages/testpage/Test";
+import ChatContainer from "./components/ChatContainer/Chat/ChatContainer";
+import Chat from "./pages/Chat/Chat";
 
 const AppRouter = () => {
   const mode = useSelector((state) => state.mode);
@@ -48,6 +50,7 @@ const AppRouter = () => {
           path="/profile/:userId"
           element={isAuth ? <Profilepage /> : <Navigate to="/" />}
         />
+        <Route path="/chat" element={<Chat />} />
 
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/post" element={<Test />} />

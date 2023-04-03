@@ -53,9 +53,7 @@ const HeaderComponent = () => {
   return (
     <>
       <div className="header sticky ">
-        <div className="topbarleft">
-          <Logo />
-        </div>
+        <div className="topbarleft">{/* <Logo /> */}</div>
         <div className="topbarCenter">
           <div className="searchbar">
             {/* <Search className='searchIcon'/> */}

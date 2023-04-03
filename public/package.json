@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.21.0",
+    "@iconscout/react-unicons": "^2.0.2",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -22,13 +23,14 @@
     "react-hook-form": "^7.43.8",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
+    "react-input-emoji": "^5.0.1",
     "react-phone-input-2": "^2.15.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "redux-persist": "^6.0.0",
-    "timeago.js": "^4.0.2",
+    "socket.io-client": "^4.6.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"
   },

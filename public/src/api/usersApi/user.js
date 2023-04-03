@@ -14,7 +14,7 @@ export const login = async (email, password) => {
 export const register = async (userDetails) => {
   console.log("userdetail in register api", userDetails);
   console.log(typeof userDetails.phoneNumber);
-  const response = await fetch("http://localhost:3001/auth/register", {
+  const response = await fetch("http://localhost:3001/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userDetails),
@@ -61,6 +61,17 @@ export const fetchAllUsers = async () => {
   }
 };
 
+export const getUser = async (userId) => {
+  // console.log(">>>>>>><<<<<", userId);
+
+  try {
+    const { data } = await axios.get(`http://localhost:3001/users/${userId}`);
+    // console.log("<<<< axios", data);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 // export const fetchSuggestedUser = async (userId, token) => {
 //   return new Promise(async (resolve, reject) => {
 //     const { data } = await fetch(
@@ -80,6 +91,19 @@ export const fetchSuggestedUser = async (userId, token) => {
     const { data } = await axios.get(
       `http://localhost:3001/users/suggestedUser/${userId}`
     );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const fetchFriends = async (userId) => {
+  console.log("in fetch friends");
+  try {
+    const { data } = await axios.get(
+      `http://localhost:3001/users/${userId}/friends`
+    );
+
+    console.log("in fetch friends", data);
     return data;
   } catch (err) {
     console.log(err);

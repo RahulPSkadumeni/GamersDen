@@ -28,6 +28,8 @@ const SuggestedUsers = () => {
     console.log(id);
     console.log(currentUserId);
     friendRequest(id, currentUserId);
+    let suggested = suggestedUsers.filter((user) => user._id !== id);
+    setSuggestedUsers(suggested);
     // setFilteredUser(data);
   };
 

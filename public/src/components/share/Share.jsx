@@ -35,7 +35,7 @@ const Share = () => {
   };
 
   return (
-    <div className="Share">
+    <div className="Share ">
       <div className="shareWrapeer">
         <div className="shareTop">
           <img

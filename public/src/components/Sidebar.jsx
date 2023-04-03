@@ -10,7 +10,7 @@ import SuggestedUsers from "./friendsSuggesition/SuggestedUsers";
 // import {HomeSharp,NotificationsNoneSharp,ForwardToInboxSharp,VideoLibrarySharp,PeopleSharp}  from "@mui/icons-material"
 const Sidebar = () => {
   return (
-    <div className="w-1/3 md:w-1/4 xl:1/5">
+    <div className="w-4/7 ">
       Explore
       <div className="sidbarWrap">
         <ul className="sidebarList">

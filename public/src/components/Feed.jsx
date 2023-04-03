@@ -89,8 +89,8 @@ const Feed = ({ userId, isProfile = false }) => {
   // }, []);
 
   return (
-    <div className=" bg-slate-600">
-      <div className="" style={{ margin: "100px" }}>
+    <div className="w-3/5 bg-slate-600">
+      <div style={{ margin: "100px" }}>
         {/* <input
           className="bg-white"
           type="text"
@@ -100,8 +100,9 @@ const Feed = ({ userId, isProfile = false }) => {
         <Share content={content} setContent={setContent} />
         {/* <Create /> */}
         {posts.map((p) => (
-          <Post key={p._id} post={p} />
+          <Post className="max-w-44" key={p._id} post={p} />
         ))}
+        {/* <div className="  bg-indigo-500">haiiiiii</div> */}
       </div>
     </div>
   );

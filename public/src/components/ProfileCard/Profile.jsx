@@ -10,7 +10,8 @@ const Profile = () => {
   // console.log(user);
   const navigate = useNavigate;
   const token = useSelector((state) => state.token);
-  const { userId } = useParams();
+  // const { userId } = useParams();
+  const userId = user._id;
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
       // const response = await fetch(`http://localhost:3001/users/${user._id}`, {
@@ -18,9 +19,10 @@ const Profile = () => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    console.log(data);
+    console.log(">>profile>>", data);
     // setUser(data);
     setProfile(data);
+    console.log(profile);
   };
 
   useEffect(() => {

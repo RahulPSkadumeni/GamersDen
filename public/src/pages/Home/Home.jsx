@@ -52,8 +52,15 @@ const Home = () => {
 
   // console.log(state);
   return (
-    <div>
-      <HeaderComponent />
+    <div className="h-screen bg-blue-200 ">
+      {/* <div className="bg-blue-500 text-white text-center py-4 rounded-lg text-5xl ">
+        1
+      </div>
+      <div className="bg-blue-500 text-white text-center  mt-3 text-5xl ">
+        2
+      </div> */}
+
+      {/* <HeaderComponent /> */}
       <BodyComponent />
     </div>
   );

@@ -14,9 +14,9 @@ const BodyComponent = () => {
   let owner = true;
   return (
     <div className="homeContainer">
-      <Sidebar />
-      {/* <Feed />
-      <RightbarHome /> */}
+      {/* <Sidebar />
+      <Feed /> */}
+      <RightbarHome />
     </div>
   );
 };
