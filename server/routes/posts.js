@@ -8,8 +8,13 @@ import crypto from "crypto";
 import {
   S3Client,
   PutObjectCommand,
+  GetObjectCommand,
   AbortMultipartUploadCommand,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
+
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
 import dotenv from "dotenv";
 import sharp from "sharp";
 
@@ -58,8 +63,8 @@ router.post("/createpostImg", upload.single("image"), async (req, res) => {
   const des = req.body.des;
   const buffer = await sharp(req.file.buffer)
     .resize({
-      height: 1920,
-      width: 1080,
+      height: 1080,
+      width: 1920,
       fit: "contain",
     })
     .toBuffer();
@@ -90,7 +95,6 @@ router.post("/createpostImg", upload.single("image"), async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-  res.send(newPost);
 });
 
 //update post
@@ -115,17 +119,33 @@ router.put("/:id", async (req, res) => {
   }
 });
 //update post
-router.delete("/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   console.log("delete >>>>Post");
 
   try {
-    console.log(req.params.id);
+    // console.log(req.params.id);
+    console.log(req.body.userId);
     const post = await Post.findById(req.params.id);
+
     console.log("post");
     console.log(post);
-    console.log(req.body.userId);
-    console.log(post.userId);
+    // console.log(req.body.userId);
+    // console.log(post.userId);
     if (post.userId == req.body.userId) {
+      // ?? delete from aws
+
+      // key:post.image  that we want to delete from s3
+
+      if (post.image) {
+        const deleteParams = {
+          Bucket: bucketName,
+          Key: post.image,
+        };
+
+        const deleteCommand = new DeleteObjectCommand(deleteParams);
+        await s3Client.send(deleteCommand);
+      }
+      console.log("start to delete from atlas");
       await post.deleteOne({ $set: req.body });
       res.status(200).json("post deleted");
     } else {
@@ -178,11 +198,34 @@ router.get("/timeline/:id", allTimeline);
 
 router.get("/profile/:id", async (req, res) => {
   console.log(req.params.id);
+  console.log(">>>>>>>>>>>>>>>>>>");
   try {
-    const user = await User.findOne({ _id: req.params.id });
-    console.log(user);
-    const posts = await Post.find({ userId: user._id });
-    console.log(posts);
+    // const user = await User.findOne({ _id: req.params.id });
+    // console.log(">>>>>>>>>>>>>>>>>>", user);
+
+    const posts = await Post.find({ userId: req.params.id });
+    // posts.map((p) => {
+    //   console.log(p.image);
+    //    getObjectParams = {
+    //     Bucket: bucketName,
+    //     Key: posts.image,
+    //   };
+    // });
+    for (const post of posts) {
+      const getObjectParams = {
+        Bucket: bucketName,
+        Key: post.image,
+      };
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
+      const command = new GetObjectCommand(getObjectParams);
+
+      const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
+      console.log("<<<<<<<<<<<<<<<", url);
+      post.picturePath = url;
+      console.log(">>>>>>>>>>>>>>>", post);
+    }
+
     res.json(posts);
   } catch (error) {
     res.status(500).json(error);

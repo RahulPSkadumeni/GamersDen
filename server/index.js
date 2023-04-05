@@ -12,10 +12,13 @@ import { fileURLToPath } from "url";
 // importing routes
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import commentRoutes from "./routes/comment.js";
+// import messageRoute from "./routes/message.js";
+import chatRoutes from "./routes/ChatRoute.js";
 
 import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
-
+import messageRoutes from "./routes/message.js";
 const app = express();
 /*configurations( middleware configuration and package configuration) */
 const __filename = fileURLToPath(import.meta.url);
@@ -32,7 +35,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    method: ["GET", "POST"],
+    method: ["GET", "POST", "PATCH", "PUT"],
     credentials: true,
   })
 );
@@ -63,7 +66,7 @@ app.post("createPosts", (req, res) => {
 });
 /*_____________Route______________middleware__________ controller(_actual logic)_____*/
 app.post(
-  "/auth/register",
+  "/register",
   register
 ); /* should be in route file but we ned upload variable so */
 
@@ -76,6 +79,11 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
 app.use("/posts", postRoutes);
+
+app.use("/comment", commentRoutes);
+app.use("/chat", chatRoutes);
+app.use("/message", messageRoutes);
+// app.use("/message", messageRoute);
 
 // app.use("/posts/createpost", async (req, res) => {
 //   console.log("first");

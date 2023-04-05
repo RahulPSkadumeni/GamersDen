@@ -11,25 +11,48 @@ import {
   findUser,
   getUserFriends,
   addRemoveFriend,
+  allUser,
+  suggestedUser,
+  print,
 } from "../controllers/user.js";
 
 import { verifyToken } from "../middleware/authorization.js";
+import multer from "multer";
+import { S3Client } from "@aws-sdk/client-s3";
+
+// dotenv.config();
+const randomImageName = (bytes = 32) =>
+  crypto.randomBytes(bytes).toString("hex");
+const bucketName = process.env.AWS_BUCKET_NAME;
+const region = process.env.AWS_BUCKET_REGION;
+const accessKeyId = process.env.AWS_ACCESS_KEY;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+const s3Client = new S3Client({
+  credentials: {
+    accessKeyId,
+    secretAccessKey,
+  },
+  region: region,
+});
 
 const router = express.Router();
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 //update
 
 //delete
 //follow
 //unfollow
 //get
+router.post("/create/", print);
 
-router.get("/", (req, res) => {
-  console.log("its user routes");
-  res.send("haii");
-});
+router.get("/allUsers", allUser);
 
 router.put(
-  "/:id",
+  "/updateUser/:id",
+  upload.single("image"),
   updateUser
   //  async (req, res) => {
   //   if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -164,5 +187,7 @@ router.put("/:id/unfollow", async (req, res) => {
 // });
 
 router.get("/:id/friends", getUserFriends);
-router.patch("/:id/:friendId", addRemoveFriend);
+router.post("/:id/:friendId", addRemoveFriend);
+
+router.get("/suggestedUser/:userId", suggestedUser);
 export default router;

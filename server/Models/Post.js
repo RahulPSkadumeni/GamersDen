@@ -15,7 +15,6 @@ const PostSchema = new mongoose.Schema(
     },
     picturePath: {
       type: String,
-      max: 100,
     },
     likes: {
       type: Array,

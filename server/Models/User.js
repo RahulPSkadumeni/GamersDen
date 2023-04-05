@@ -40,6 +40,7 @@ const UserSchema = new mongoose.Schema(
     },
     friends: {
       type: Array,
+      ref: "users",
       default: [],
     },
 
