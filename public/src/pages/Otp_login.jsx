@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Homepage from "./Home/Home";
 import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
 import OtpInput from "otp-input-react";
@@ -23,8 +23,33 @@ export default function Otp_login() {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(30);
   const navigate = useNavigate();
   console.log(ph, "pppppppppppppppppppppppppppppppppp");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(interval);
+        } else {
+          setSeconds(59);
+          setMinutes(minutes - 1);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [seconds]);
+
   const handlePhoneNumber = () => {
     console.log("Inside handle phoneno", ph);
     checkPhone(ph).then((result) => {
@@ -88,9 +113,10 @@ export default function Otp_login() {
         setShowOTP(true);
         toast.success("OTP sended successfully!");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
         setLoading(false);
+        toast.error("Wrong OTP!");
       });
   }
 
@@ -105,11 +131,22 @@ export default function Otp_login() {
         setUser(res.user);
         setLoading(false);
       })
+      // .catch((err) => {
+      //   console.log(err);
+      //   setLoading(false);
+      // });
       .catch((err) => {
         console.log(err);
         setLoading(false);
+        toast.error("Wrong OTP!");
       });
   }
+
+  const resendOTP = () => {
+    // setMinutes(1);
+    setSeconds(30);
+    handlePhoneNumber();
+  };
 
   return (
     <section className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 ... flex items-center justify-center h-screen">
@@ -133,10 +170,42 @@ export default function Otp_login() {
                 </div>
                 <label
                   htmlFor="otp"
-                  className="font-bold text-l text-white text-center sm:text-left"
+                  className="font-bold text-l text-white text-center "
                 >
                   Enter your OTP
                 </label>
+                {/* <div className="countdown-text">
+                  <p>Time Remaining: 01:25</p>
+
+                  <button style={{ color: "#FF5630" }}>Resend OTP</button>
+                </div> */}
+
+                <div className="countdown-text text-white-500">
+                  {seconds > 0 || minutes > 0 ? (
+                    <p className="text-sm text-gray-600 mt-2">
+                      Resend OTP in{" "}
+                      <span className="text-red-500 font-medium">
+                        {minutes < 10 ? `0${minutes}` : minutes}:
+                        {seconds < 10 ? `0${seconds}` : seconds}
+                      </span>
+                    </p>
+                  ) : (
+                    <button
+                      disabled={seconds > 0 || minutes > 0}
+                      onClick={resendOTP}
+                      className={`block mx-auto mt-4 px-4 py-2 border border-transparent text-base font-medium rounded-md ${
+                        seconds > 0 || minutes > 0
+                          ? "text-gray-500 bg-gray-100 cursor-default"
+                          : "text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      }`}
+                    >
+                      {seconds > 0 || minutes > 0
+                        ? `Resend OTP in ${minutes}:${seconds}`
+                        : "Resend OTP"}
+                    </button>
+                  )}
+                </div>
+
                 <OtpInput
                   value={otp}
                   onChange={setOtp}
@@ -144,7 +213,7 @@ export default function Otp_login() {
                   otpType="number"
                   disabled={false}
                   autoFocus
-                  className="opt-container "
+                  className="opt-container justify-center content-center"
                 ></OtpInput>
                 <button
                   onClick={onOTPVerify}

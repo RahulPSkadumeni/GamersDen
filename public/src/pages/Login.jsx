@@ -144,6 +144,12 @@ function Login() {
               >
                 Create a New Account
               </Link>
+              <Link
+                to="/changepassword"
+                className=" grid font-semibold mt-3r text-center text-xl"
+              >
+                Forgot password?
+              </Link>
             </div>
           </form>
           {/* <span className="loginForgot">Forgot Password?</span> */}

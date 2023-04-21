@@ -12,6 +12,7 @@ const Profile = () => {
   const token = useSelector((state) => state.token);
   // const { userId } = useParams();
   const userId = user._id;
+
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
       // const response = await fetch(`http://localhost:3001/users/${user._id}`, {
@@ -64,9 +65,11 @@ const Profile = () => {
         <div className="image-container">
           <img
             className="round"
-            src="https://i.pinimg.com/564x/cf/fc/1d/cffc1d6458cfeae198045145673b351b.jpg"
+            // src="https://i.pinimg.com/564x/cf/fc/1d/cffc1d6458cfeae198045145673b351b.jpg"
+            src={profile.picturePath}
             alt="user"
           />
+          {/* {profile.picturePath} */}
         </div>
 
         <h3 href="#">{userName}</h3>

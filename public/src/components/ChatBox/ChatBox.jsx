@@ -3,6 +3,7 @@ import { addMessage, getMessages } from "../../api/MesssageApi/messageApi";
 import { getUser } from "../../api/usersApi/user";
 import "./ChatBox.css";
 // import { format } from "timeago.js";
+import TimeAgo from "react-timeago";
 import InputEmoji from "react-input-emoji";
 import { useRef } from "react";
 const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
@@ -133,6 +134,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
                   >
                     <span>{message.text}</span>{" "}
                     {/* <span>{format(message.createdAt)}</span> */}
+                    <TimeAgo date={new Date(message.createdAt).getTime()} />
                   </div>
                 </>
               ))}

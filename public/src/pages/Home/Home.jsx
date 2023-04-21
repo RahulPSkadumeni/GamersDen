@@ -6,6 +6,7 @@ import HeaderComponent from "../../components/HeaderComponent";
 import state from "../state";
 
 import "./Home.css";
+import { NavBars } from "../../components/NavBar_New/Nav";
 
 const Home = () => {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -52,15 +53,15 @@ const Home = () => {
 
   // console.log(state);
   return (
-    <div className="h-screen bg-blue-200 ">
+    <div className="h-screen  ">
       {/* <div className="bg-blue-500 text-white text-center py-4 rounded-lg text-5xl ">
         1
       </div>
       <div className="bg-blue-500 text-white text-center  mt-3 text-5xl ">
         2
       </div> */}
-
-      {/* <HeaderComponent /> */}
+      {/* <NavBars /> */}
+      <HeaderComponent />
       <BodyComponent />
     </div>
   );

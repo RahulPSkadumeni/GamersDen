@@ -82,46 +82,50 @@ export default function Chat() {
     //     <ChatContainer />
     //   </div> */}
     // </div>
+    <>
+      <HeaderComponent />
 
-    <div className="Chat overflow-y-scroll no-scrollbar x-scroll no-scrollbar bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-500 ... ">
-      {/* Left Side */}
-      <div className="Left-side-chat bg-gradient-to-r from-pink-300 via-purple-300">
-        <LogoSearch />
-        <div className="overflow-hidden p-4 mt-5 ">
-          <h2 className="chats text-white flex flex-col  h-screen p-4 rounded-3xl bg-gradient-to-r from-green-400 to-blue-500">
-            Chats
-            <div className="mt-3 Chat-list ">
-              {chats.map((chat) => (
-                <div
-                  onClick={() => {
-                    setCurrentChat(chat);
-                  }}
-                >
-                  <Conversation
-                    data={chat}
-                    currentUser={user._id}
-                    online={checkOnlineStatus(chat)}
-                  />
-                </div>
-              ))}
-            </div>
-          </h2>
+      <div className="Chat overflow-y-scroll no-scrollbar x-scroll no-scrollbar bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-500 ... ">
+        <div className="Left-side-chat bg-gradient-to-r from-pink-300 via-purple-300">
+          {/* <LogoSearch /> */}
+          <div className="overflow-hidden p-4 mt-5 ">
+            <h2 className="chats text-white flex flex-col  h-screen p-4 rounded-3xl bg-gradient-to-r from-slate-400 to-blue-400">
+              Chats
+              <div className="mt-3 Chat-list ">
+                {chats.map((chat) => (
+                  <div
+                    onClick={() => {
+                      setCurrentChat(chat);
+                    }}
+                  >
+                    <Conversation
+                      data={chat}
+                      currentUser={user._id}
+                      online={checkOnlineStatus(chat)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </h2>
+          </div>
+        </div>
+
+        {/* Right Side */}
+
+        <div className="Right-side-chat">
+          <div
+            style={{ width: "20rem", display: "flex", alignSelf: "flex-end" }}
+          >
+            {/* <NavIcons /> */}
+          </div>
+          <ChatBox
+            chat={currentChat}
+            currentUser={user._id}
+            setSendMessage={setSendMessage}
+            receivedMessage={receivedMessage}
+          />
         </div>
       </div>
-
-      {/* Right Side */}
-
-      <div className="Right-side-chat">
-        <div style={{ width: "20rem", display: "flex", alignSelf: "flex-end" }}>
-          <NavIcons />
-        </div>
-        <ChatBox
-          chat={currentChat}
-          currentUser={user._id}
-          setSendMessage={setSendMessage}
-          receivedMessage={receivedMessage}
-        />
-      </div>
-    </div>
+    </>
   );
 }

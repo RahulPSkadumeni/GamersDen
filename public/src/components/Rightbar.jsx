@@ -18,7 +18,7 @@ export default function Rightbar({ profile }) {
     return (
       <>
         <Profile />
-        <h4 className="rightbarTitle">Online Friends</h4>
+        <h4 className="rightbarTitle"> Friends</h4>
 
         <FriendsCard className="rightbarFriendList" />
 

@@ -2,6 +2,15 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 
+export const adminlogin = async (email, password) => {
+  const response = await fetch("http://localhost:3001/admin/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  return response.json();
+};
+
 export const login = async (email, password) => {
   const response = await fetch("http://localhost:3001/auth/login", {
     method: "POST",
@@ -19,6 +28,22 @@ export const register = async (userDetails) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userDetails),
   });
+
+  return response.json();
+};
+
+export const changePasssword = async (userDetails, ph) => {
+  console.log(ph);
+  console.log("user detail in register api", userDetails);
+  console.log(typeof userDetails.password);
+  const response = await fetch(
+    `http://localhost:3001/users/updatePassword/${ph}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userDetails),
+    }
+  );
 
   return response.json();
 };
@@ -110,7 +135,7 @@ export const fetchFriends = async (userId) => {
   }
 };
 
-export const friendRequest = async (id, currentUserId) => {
+export const friendRequest = async (id, currentUserId, token) => {
   console.log("inside fetch req ", id);
   // const userId = id;
   // const response = await fetch(
@@ -125,7 +150,12 @@ export const friendRequest = async (id, currentUserId) => {
 
   try {
     const { data } = await axios.post(
-      `http://localhost:3001/users/${currentUserId}/${id}`
+      `http://localhost:3001/users/${currentUserId}/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     console.log(data);
     return data;

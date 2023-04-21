@@ -89,7 +89,7 @@ const Feed = ({ userId, isProfile = false }) => {
   // }, []);
 
   return (
-    <div className="w-3/5 bg-slate-600">
+    <div className=" bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 font-mono w rounded-3xl text-center p-6 mt-5">
       <div style={{ margin: "100px" }}>
         {/* <input
           className="bg-white"

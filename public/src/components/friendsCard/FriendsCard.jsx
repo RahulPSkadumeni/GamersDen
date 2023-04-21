@@ -28,13 +28,21 @@ const FriendsCard = () => {
             <div className="rightBarProfileImageContainer">
               <img
                 className="rightbarprofileImage"
-                src="https://wallpapers.com/images/featured-full/cool-profile-pictures-4co57dtwk64fb7lv.jpg"
+                // src="https://wallpapers.com/images/featured-full/cool-profile-pictures-4co57dtwk64fb7lv.jpg"
+                src={
+                  friend.picturePath
+                    ? friend.picturePath
+                    : "https://wallpapers.com/images/featured-full/cool-profile-pictures-4co57dtwk64fb7lv.jpg"
+                }
                 alt=""
               />
               <span className="rigbtbarOnline"></span>
             </div>
             <div className="rigthBarFriendCardData">
-              <span className="rigbtbarUsername"> Yadhu Yadhu</span>
+              <span className="rigbtbarUsername">
+                {" "}
+                {friend.firstName} {friend.lastName}
+              </span>
 
               <span className="lastSeen">45 min ago</span>
             </div>

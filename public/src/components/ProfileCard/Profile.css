@@ -34,7 +34,7 @@ p {
 
 .card-container {
   margin-top: 8px;
-  background-color: #231e39;
+  background-color: #2e274c;
   border-radius: 5px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
   color: #b3b8cd;
@@ -137,4 +137,18 @@ footer a {
   justify-content: center;
   align-items: center;
   padding: 5px;
+}
+
+.componentCard-container {
+  margin-top: 8px;
+  background-color: #2e274c;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+  color: #b3b8cd;
+  padding: 30px;
+  /* position: fixed; */
+  width: 300px;
+  justify-content: center;
+  max-width: 100%;
+  text-align: center;
 }

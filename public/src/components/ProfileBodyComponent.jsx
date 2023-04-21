@@ -7,7 +7,7 @@ import "./profileBodyComponent.css";
 
 const ProfileBodyComponent = () => {
   return (
-    <div className="profilepage">
+    <div>
       <Sidebar />
       <Feed />
       <UserProfile />

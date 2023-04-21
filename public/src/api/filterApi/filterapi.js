@@ -5,3 +5,11 @@ export const filterUser = (searchTerm, allUser) => {
   console.log(filterData, "filterDatakkkkkkkkkk");
   return filterData;
 };
+
+export const postFilter = (searchTerm, allPost) => {
+  const filterData = allPost.filter((user) =>
+    user?.firstName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(filterData, "filterDatakkkkkkkkkk");
+  return filterData;
+};
