@@ -18,6 +18,7 @@ import FriendsCard from "./friendsCard/FriendsCard";
 import { Link, Navigate } from "react-router-dom";
 import { fetchAllPost } from "../api/postApi/post";
 import { useNavigate } from "react-router-dom";
+import Axios from "../utils/axios";
 // import {ChatBubbleOutlineSharp} from '@mui/icons-material';
 // import {NotificationAddSharp} from "@mui/icons-material"
 // import {LogoutSharp} from "@mui/icons-material"
@@ -38,15 +39,11 @@ const HeaderComponent = () => {
   useEffect(() => {
     const fetchNotification = async () => {
       console.log("token", token);
-      const data = await axios.post(
-        `http://localhost:3001/notification/all`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const data = await Axios.post(`/notification/all`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(data.data.length);
       setNotificationCount(data.data.length);
     };
@@ -91,12 +88,9 @@ const HeaderComponent = () => {
 
   const handleSearch = async (searchTerm) => {
     if (searchTerm !== "") {
-      const { data } = await axios.post(
-        "http://localhost:3001/search/searchAll",
-        {
-          searchTerm: searchTerm,
-        }
-      );
+      const { data } = await Axios.post("search/searchAll", {
+        searchTerm: searchTerm,
+      });
       console.log(data);
       navigate("/SearchResult", { state: { data } });
       // const data = filterUser(searchTerm, allUser);

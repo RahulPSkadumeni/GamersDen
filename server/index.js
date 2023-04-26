@@ -15,10 +15,14 @@ import userRoutes from "./routes/users.js";
 import commentRoutes from "./routes/comment.js";
 // import messageRoute from "./routes/message.js";
 import chatRoutes from "./routes/ChatRoute.js";
+import searchRoute from "./routes/searchRoute.js";
 
 import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import messageRoutes from "./routes/message.js";
+import GroupRoutes from "./routes/GroupRoutes.js";
+import AdminRoutes from "./routes/AdminRoutes.js";
+import NotificationRoutes from "./routes/NotificationRoutes.js";
 const app = express();
 /*configurations( middleware configuration and package configuration) */
 const __filename = fileURLToPath(import.meta.url);
@@ -27,18 +31,55 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+//app.use(helmet());
+// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    method: ["GET", "POST", "PATCH", "PUT"],
-    credentials: true,
-  })
-);
+app.use(cors());
+// app.use(
+//   cors({
+//     //origin: "https://main.d3d91l7npjddz9.amplifyapp.com",
+//     origin: "http://localhost:3000",
+//     method: ["GET", "POST", "PATCH", "PUT"],
+//     credentials: true,
+//     preflightContinue: true,
+//     optionsSuccessStatus: 204,
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+//>>>>>>>>>>>>>>>>>>>>>>>>
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST", "PATCH", "PUT"],
+//     credentials: true,
+//     preflightContinue: true,
+//     optionsSuccessStatus: 204,
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     // Set the Access-Control-Allow-Credentials header
+//     exposedHeaders: ["Access-Control-Allow-Credentials"],
+//   })
+// );
+
+// Set the header for all responses
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
+// app.options("/auth/login", (req, res) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://new-branch-name.d2v8amzg8h8i4t.amplifyapp.com"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.sendStatus(200);
+// });
+
+//>>>>>>>>>>>>>>>>>>>>>>>>
+
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /* Storage * git gub rep of multer*/
@@ -79,10 +120,19 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
 app.use("/posts", postRoutes);
-
+app.use("/search", searchRoute);
 app.use("/comment", commentRoutes);
 app.use("/chat", chatRoutes);
 app.use("/message", messageRoutes);
+app.use("/group", GroupRoutes);
+app.use("/admin", AdminRoutes);
+app.use(
+  "/notification",
+
+  NotificationRoutes
+);
+// app.use("/search" SearchRoutes);
+
 // app.use("/message", messageRoute);
 
 // app.use("/posts/createpost", async (req, res) => {

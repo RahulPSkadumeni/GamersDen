@@ -10,6 +10,7 @@ import axios from "axios";
 import AiFillEdit from "react-icons/ai";
 import Test from "../../pages/testpage/Test";
 import { fetchPost } from "../../api/postApi/post";
+import Axios from "../../utils/axios";
 // import Button from '@mui/material/Button';
 // import {PermMedia,Label,LocationOn,EmojiEmotions, Send} from "@mui/icons-material"
 const Share = ({ groupId = false }) => {
@@ -33,13 +34,13 @@ const Share = ({ groupId = false }) => {
     formData.append("image", file);
     formData.append("des", caption);
     formData.append("userId", userid);
-    await axios.post(" http://localhost:3001/posts/createpostImg", formData, {
+    await Axios.post(" posts/createpostImg", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
     const fetchPost = async (userId) => {
       console.log("fetch posts");
-      let res = await axios.get("/posts/profile/" + userId);
+      let res = await Axios.get("/posts/profile/" + userId);
       // console.log(res);
       // setPosts(res.data);
       dispatch(

@@ -2,6 +2,7 @@ import axios from "axios";
 import { async } from "react-input-emoji";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Axios from "../../utils/axios";
 
 const GroupJoin = ({ post }) => {
   const currentUserId = useSelector((state) => state.user);
@@ -9,17 +10,14 @@ const GroupJoin = ({ post }) => {
   const token = useSelector((state) => state.token);
   const handleJoin = async () => {
     console.log("currentUserId", currentUserId);
-    const joinGroup = await axios.post(
-      `http://localhost:3001/group/join/${post._id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          userId: currentUserId?._id,
-        },
-      }
-    );
+    const joinGroup = await Axios.post(`group/join/${post._id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        userId: currentUserId?._id,
+      },
+    });
   };
   return (
     <>

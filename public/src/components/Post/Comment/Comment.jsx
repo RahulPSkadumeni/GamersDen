@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import Axios from "../../../utils/axios";
 function Comment({ postId, comment, setAllComments, userId }) {
   const [replay, setReplay] = useState(null);
   const currentUserId = useSelector((state) => state.user._id);
@@ -24,13 +25,9 @@ function Comment({ postId, comment, setAllComments, userId }) {
   const deleteComment = async (id) => {
     console.log("first");
 
-    const data = await axios.delete(
-      `http://localhost:3001/comment/delete/${id}`
-    );
+    const data = await Axios.delete(`comment/delete/${id}`);
     console.log(data);
-    let updatedComments = await axios.get(
-      `http://localhost:3001/comment/post/${postId}`
-    );
+    let updatedComments = await Axios.get(`comment/post/${postId}`);
     console.log("updatedComments", updatedComments.data);
     setAllComments(updatedComments.data);
   };
@@ -38,21 +35,19 @@ function Comment({ postId, comment, setAllComments, userId }) {
   const deleteReplay = async (commentId, replayId) => {
     console.log(commentId, replayId);
     console.log("delete replay");
-    const data = await axios.delete(
-      `http://localhost:3001/comment/replay-delete/${commentId}/${replayId}`
+    const data = await Axios.delete(
+      `comment/replay-delete/${commentId}/${replayId}`
     );
 
-    let updatedComments = await axios.get(
-      `http://localhost:3001/comment/post/${postId}`
-    );
+    let updatedComments = await Axios.get(`comment/post/${postId}`);
     console.log("updatedComments", updatedComments.data);
     setAllComments(updatedComments.data);
     // let allcomment = allComments.filter((comment) => comment._id !== id);
     // setAllComments(allcomment);
   };
   const postReplay = async () => {
-    const response = await axios.post(
-      "http://localhost:3001/comment/create-replay",
+    const response = await Axios.post(
+      "comment/create-replay",
       {
         CommentText: replay,
         // user: user._id,
@@ -65,9 +60,7 @@ function Comment({ postId, comment, setAllComments, userId }) {
       }
     );
     console.log(response);
-    let updatedComments = await axios.get(
-      `http://localhost:3001/comment/post/${postId}`
-    );
+    let updatedComments = await Axios.get(`comment/post/${postId}`);
     console.log("updatedComments", updatedComments.data);
     setAllComments(updatedComments.data);
   };

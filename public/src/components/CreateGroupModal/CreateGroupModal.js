@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import Axios from "../../utils/axios";
 // import { setPosts } from "../state";
 function CreateGroupModal() {
   const dispatch = useDispatch();
@@ -38,15 +39,11 @@ function CreateGroupModal() {
 
     try {
       // Send a POST request to the server to create the new group
-      const response = await axios.post(
-        `http://localhost:3001/group/create/${user._id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await Axios.post(`group/create/${user._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log(response.data);
     } catch (error) {

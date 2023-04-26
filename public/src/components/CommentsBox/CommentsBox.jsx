@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Comment from "../Post/Comment/Comment";
+import Axios from "../../utils/axios";
 
 function CommentsBox({ post }) {
   const [comment, setComment] = useState(null);
@@ -13,8 +14,8 @@ function CommentsBox({ post }) {
   console.log(user);
   console.log(post._id);
   const postComment = async () => {
-    const response = await axios.post(
-      "http://localhost:3001/comment/createComment/",
+    const response = await Axios.post(
+      "comment/createComment/",
       {
         CommentText: comment,
         user: user._id,
@@ -32,9 +33,7 @@ function CommentsBox({ post }) {
   };
 
   const getComments = async () => {
-    const data = await axios.get(
-      `http://localhost:3001/comment/post/${post._id}`
-    );
+    const data = await Axios.get(`comment/post/${post._id}`);
     console.log(data);
     setAllComments(data.data);
   };

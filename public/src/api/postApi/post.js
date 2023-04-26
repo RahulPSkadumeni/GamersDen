@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { setPosts } from "../../pages/state";
 import axios from "axios";
+import BASE_URL from "../../utils/baseurl";
+import Axios from "../../utils/axios";
 
 export const getPosts = async (id) => {
-  const response = await fetch(`http://localhost:3001/posts/timeline/${id}`, {
+  const response = await fetch(BASE_URL + `/posts/timeline/${id}`, {
     method: "GET",
     // headers: { "Content-Type": "application/json" },
   });
@@ -25,7 +27,7 @@ export const fetchPost = async (userId) => {
 export const fetchAllPost = async () => {
   console.log("fetching all posts");
   try {
-    const { data } = await axios.get(`http://localhost:3001/users/allPost`);
+    const { data } = await Axios.get(`users/allPost`);
     console.log("kkkk", data);
     return data;
   } catch (error) {

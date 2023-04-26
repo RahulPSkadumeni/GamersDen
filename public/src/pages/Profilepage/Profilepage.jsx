@@ -12,6 +12,7 @@ import { BiEdit } from "react-icons/bi";
 
 import "./Profilepage.css";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../utils/baseurl";
 const Profilepage = () => {
   // const [user, setUser] = useState({});
   const [Profile, setProfile] = useState({});
@@ -37,7 +38,7 @@ const Profilepage = () => {
   }, []);
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(BASE_URL + `users/${userId}`, {
       // const response = await fetch(`http://localhost:3001/users/${user._id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },

@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../pages/state";
 import TimeAgo from "react-timeago";
 import CommentsBox from "../CommentsBox/CommentsBox";
+import ReactTimeago from "react-timeago";
+import Axios from "../../utils/axios";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.like);
@@ -27,7 +29,7 @@ const Post = ({ post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`users/${post.userId}`);
+      const res = await Axios.get(`users/${post.userId}`);
       console.log(res.data);
       setUser(res.data);
     };
@@ -49,12 +51,9 @@ const Post = ({ post }) => {
   // }, []);
 
   const likeHandler = async () => {
-    const like = await axios.put(
-      `http://localhost:3001/posts/${post._id}/like`,
-      {
-        userId: currentUserId,
-      }
-    );
+    const like = await Axios.put(`/posts/${post._id}/like`, {
+      userId: currentUserId,
+    });
     console.log(like);
     // if()
     // setLike();
@@ -77,17 +76,14 @@ const Post = ({ post }) => {
       if (confirmDelete) {
         // delete post code here
 
-        const deletepost = await axios.delete(
-          `http://localhost:3001/posts/delete/${post._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            data: {
-              userId: currentUserId,
-            },
-          }
-        );
+        const deletepost = await Axios.delete(`posts/delete/${post._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: {
+            userId: currentUserId,
+          },
+        });
         console.log(deletepost);
         dispatch(
           setPost({
@@ -116,9 +112,7 @@ const Post = ({ post }) => {
   // };
   const getComments = async (e) => {
     e.preventDefault();
-    const data = await axios.get(
-      `http://localhost:3001/comment/post/${post._id}`
-    );
+    const data = await Axios.get(`comment/post/${post._id}`);
     console.log(data);
     setAllComments(data.data);
     setOpen(!open);
@@ -177,7 +171,8 @@ const Post = ({ post }) => {
               </span>
               <span className=" text-cyan-900 pl-4 text-left ">
                 {/* {format(post.createdAt)} */}
-                <TimeAgo date={new Date(post.createdAt).getTime()} />
+                <ReactTimeago date={new Date(post.createdAt).getTime()} />
+                {/* <TimeAgo date={new Date(post.createdAt).getTime()} /> */}
               </span>
             </div>
           </Link>

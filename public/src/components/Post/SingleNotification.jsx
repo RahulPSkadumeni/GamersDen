@@ -3,6 +3,7 @@ import "./Post.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { BsCheckAll } from "react-icons/bs";
+import ReactTimeago from "react-timeago";
 // import { MoreVert } from '@mui/icons-material'
 // import {MoreVert} from '@mui/icons-material';
 
@@ -28,7 +29,9 @@ const SingleNotification = (props) => {
                   />
                   <div className="notifications">
                     <span>{notification.message}</span>
-                    {notification.createdAt}
+                    <ReactTimeago
+                      date={new Date(notification.createdAt).getTime()}
+                    />
                   </div>
                   <div>
                     <div className="fixed">

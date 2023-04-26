@@ -67,21 +67,23 @@ export const allTimeline = async (req, res) => {
         return Post.find({ userId: friendId }).sort({ createdAt: -1 });
       })
     );
-
+    //??fix sorting problems
     const posts = userPosts.concat(...friendPosts);
     for (const post of posts) {
-      const getObjectParams = {
-        Bucket: bucketName,
-        Key: post.image,
-      };
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
-      const command = new GetObjectCommand(getObjectParams);
+      if (post.image) {
+        const getObjectParams = {
+          Bucket: bucketName,
+          Key: post.image,
+        };
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
+        const command = new GetObjectCommand(getObjectParams);
 
-      const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
-      console.log("<<<<<<<<<<<<<<<", url);
-      post.picturePath = url;
-      console.log(">>>>>>>>>>>>>>>", post);
+        const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
+        console.log("<<<<<<<<<<<<<<<", url);
+        post.image = url;
+        console.log(">>>>>>>>>>>>>>>", post);
+      }
     }
 
     res.json(posts);
@@ -141,4 +143,42 @@ export const like = async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
+};
+
+export const allPost = async (req, res) => {
+  console.log(
+    "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
+  );
+  // try {
+  //   const userPosts = await Post.find().sort({
+  //     createdAt: -1,
+  //   });
+
+  //   const friendPosts = await Promise.all(
+  //     currentUser.friends.map((friendId) => {
+  //       // console.log(friendId);
+  //       return Post.find({ userId: friendId }).sort({ createdAt: -1 });
+  //     })
+  //   );
+
+  //   const posts = userPosts.concat(...friendPosts);
+  //   for (const post of posts) {
+  //     const getObjectParams = {
+  //       Bucket: bucketName,
+  //       Key: post.image,
+  //     };
+  //     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
+  //     const command = new GetObjectCommand(getObjectParams);
+
+  //     const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
+  //     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
+  //     console.log("<<<<<<<<<<<<<<<", url);
+  //     post.image = url;
+  //     console.log(">>>>>>>>>>>>>>>", post);
+  //   }
+
+  //   res.json(posts);
+  // } catch (error) {
+  //   res.status(500).json(error);
+  // }
 };

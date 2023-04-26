@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import Axios from "../../utils/axios";
 
 export default function Create() {
   const [file, setFile] = useState();
@@ -11,13 +12,9 @@ export default function Create() {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("caption", caption);
-    await axios.post(
-      "http://localhost:3001/posts/createpostWithImage",
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
+    await Axios.post("posts/createpostWithImage", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
   };
 
   return (

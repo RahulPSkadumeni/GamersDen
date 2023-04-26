@@ -1,11 +1,10 @@
 import axios from "axios";
+import Axios from "../../utils/axios";
 
 export const groupSuggestion = async (id) => {
   console.log("<<<< axio");
   try {
-    const { data } = await axios.get(
-      `http://localhost:3001/group/allgroup/${id}`
-    );
+    const { data } = await Axios.get(`group/allgroup/${id}`);
     console.log("<<<< axios getMessage", data);
     return data;
   } catch (err) {
@@ -16,9 +15,7 @@ export const groupSuggestion = async (id) => {
 export const UsersGroupSuggestion = async (id) => {
   console.log("<<<< axio");
   try {
-    const { data } = await axios.get(
-      `http://localhost:3001/group/userGroup/${id}`
-    );
+    const { data } = await Axios.get(`group/userGroup/${id}`);
     console.log("<<<< axios getMessage", data);
     return data;
   } catch (err) {

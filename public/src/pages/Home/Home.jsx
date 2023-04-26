@@ -7,6 +7,7 @@ import state from "../state";
 
 import "./Home.css";
 import { NavBars } from "../../components/NavBar_New/Nav";
+import BASE_URL from "../../utils/baseurl";
 
 const Home = () => {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -18,13 +19,10 @@ const Home = () => {
   // console.log(currentUser._id);
   const getUser = async () => {
     // const response = await fetch(`http://localhost:3001/users/${userId}`, {
-    const response = await fetch(
-      `http://localhost:3001/users/${currentUser._id}`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    const response = await fetch(BASE_URL + `/users/${currentUser._id}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
     const data = await response.json();
     setUser(data);
   };

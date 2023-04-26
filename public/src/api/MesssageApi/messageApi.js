@@ -1,8 +1,9 @@
 import axios from "axios";
+import Axios from "../../utils/axios";
 
 export const getMessages = async (id) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/message/${id}`);
+    const { data } = await Axios.get(`message/${id}`);
     // console.log("<<<< axios getMessage", data);
     return data;
   } catch (err) {
@@ -11,7 +12,7 @@ export const getMessages = async (id) => {
 };
 export const addMessage = async (message) => {
   try {
-    const data = await axios.post("http://localhost:3001/message/", message);
+    const data = await Axios.post("message/", message);
     console.log("<<<< axios getMessage", data);
     return data;
   } catch (err) {

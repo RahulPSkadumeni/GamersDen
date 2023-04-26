@@ -8,6 +8,7 @@ import Banner from "./Banner/Banner";
 import SingleNotification from "./Post/SingleNotification";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Axios from "../utils/axios";
 
 const NotificationFeed = () => {
   const token = useSelector((state) => state.token);
@@ -15,8 +16,8 @@ const NotificationFeed = () => {
   const user = useSelector((state) => state.user);
   const markAllNotificationsAsRead = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:3001/notification/read`,
+      const response = await Axios.post(
+        `notification/read`,
         { userId: user._id },
         {
           headers: {
@@ -35,15 +36,11 @@ const NotificationFeed = () => {
   useEffect(() => {
     const fetchNotification = async () => {
       console.log("token", token);
-      const data = await axios.post(
-        `http://localhost:3001/notification/all`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const data = await Axios.post(`notification/all`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(data.data);
       setNotifications(data.data);
     };

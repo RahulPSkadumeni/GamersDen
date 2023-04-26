@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Profile.css";
+import BASE_URL from "../../utils/baseurl";
 
 const Profile = () => {
   // const [user, setUser] = useState(null);
@@ -14,7 +15,7 @@ const Profile = () => {
   const userId = user._id;
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(BASE_URL + `/users/${userId}`, {
       // const response = await fetch(`http://localhost:3001/users/${user._id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -72,7 +73,7 @@ const Profile = () => {
           {/* {profile.picturePath} */}
         </div>
 
-        <h3 href="#">{userName}</h3>
+        <h3 href="#">{profile.userName}</h3>
 
         <h4>{user.email}</h4>
         <p>

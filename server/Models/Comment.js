@@ -24,7 +24,26 @@ const CommentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Comment",
     },
+    replies: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "users",
+          required: true,
+        },
+        commentText: {
+          type: String,
+          required: true,
+          min: 1,
+        },
+        likes: {
+          type: Array,
+          default: [],
+        },
+      },
+    ],
   },
+
   { timestamps: true }
 );
 const Comments = mongoose.model("comment", CommentSchema);

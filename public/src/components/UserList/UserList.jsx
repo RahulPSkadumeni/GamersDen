@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Axios from "../../utils/axios";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/users/allUsers").then((res) => {
+    Axios.get("users/allUsers").then((res) => {
       setUsers(res.data);
     });
   }, []);
@@ -13,8 +14,8 @@ const UserList = () => {
     const updatedUser = { ...user, status: !user.status };
     const confirm = window.confirm("Are you sure sure?");
     if (confirm) {
-      const update = await axios.put(
-        `http://localhost:3001/users/updateUserStatus/${user._id}`,
+      const update = await Axios.put(
+        `users/updateUserStatus/${user._id}`,
         updatedUser
       );
       console.log(update);

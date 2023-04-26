@@ -10,6 +10,9 @@ import {
   UpdateComment,
   DeleteComment,
   // LikeComment,
+  CreateReplay,
+  DeleteReplay,
+  CreateReplayWithAuth,
 } from "../controllers/commentController.js";
 const router = express.Router();
 
@@ -19,6 +22,11 @@ router.get("/getAcomment/:commentId", GetAComment);
 router.post("/createComment/", CreateComment);
 router.put("/:commentId", UpdateComment);
 router.delete("/delete/:commentId", DeleteComment);
+
+//replay
+router.post("/create-replay", CreateReplayWithAuth);
+// router.post("/create-replay", CreateReplay);
+router.delete("/replay-delete/:commentId/:replayId", DeleteReplay);
 
 // router.put("/commentLike/:commentId", LikeComment);
 //get a comment

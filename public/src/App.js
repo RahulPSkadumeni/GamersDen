@@ -35,6 +35,7 @@ const AppRouter = () => {
   // const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const isAuth = Boolean(useSelector((state) => state.token));
   const isAdmin = Boolean(useSelector((state) => state.token));
+
   return (
     <BrowserRouter>
       <Routes>

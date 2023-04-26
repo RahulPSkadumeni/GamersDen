@@ -6,6 +6,7 @@ import { fetchSuggestedUser } from "../../api/usersApi/user";
 import { friendRequest } from "../../api/usersApi/user";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Axios from "../../utils/axios";
 const SuggestedUsers = () => {
   const [suggestedUsers, setSuggestedUsers] = useState([]);
   const dispatch = useDispatch();
@@ -33,15 +34,11 @@ const SuggestedUsers = () => {
     friendRequest(id, currentUserId, token);
     //notification
     console.log("first notification");
-    const Notification = await axios.post(
-      `http://localhost:3001/notification/${id}`,
-      null,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const Notification = await Axios.post(`notification/${id}`, null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     console.log("first");
     let suggested = suggestedUsers.filter((user) => user._id !== id);
     setSuggestedUsers(suggested);

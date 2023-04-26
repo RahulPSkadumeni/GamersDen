@@ -5,6 +5,11 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "users",
+    //   required: true,
+    // },
     des: {
       type: String,
       max: 500,
@@ -13,12 +18,19 @@ const PostSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
-    picturePath: {
+    groupId: {
       type: String,
     },
+    // picturePath: {
+    //   type: String,
+    // },
     likes: {
       type: Array,
       default: [],
+    },
+    groupId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Group",
     },
   },
   { timestamps: true }

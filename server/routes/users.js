@@ -14,11 +14,15 @@ import {
   allUser,
   suggestedUser,
   print,
+  allPost,
+  updatePassword,
+  updateUserStatus,
 } from "../controllers/user.js";
 
 import { verifyToken } from "../middleware/authorization.js";
 import multer from "multer";
 import { S3Client } from "@aws-sdk/client-s3";
+// import { allPost } from "../controllers/";
 
 // dotenv.config();
 const randomImageName = (bytes = 32) =>
@@ -50,10 +54,15 @@ router.post("/create/", print);
 
 router.get("/allUsers", allUser);
 
-router.put(
-  "/updateUser/:id",
-  upload.single("image"),
-  updateUser
+router.get("/allPost", allPost);
+
+router.put("/updateUser/:id", upload.single("image"), updateUser);
+
+router.put("/updateUserStatus/:id", updateUserStatus); //block unblock
+router.post(
+  "/updatePassword/:ph",
+
+  updatePassword
   //  async (req, res) => {
   //   if (req.body.userId === req.params.id || req.body.isAdmin) {
   //     if (req.body.password) {

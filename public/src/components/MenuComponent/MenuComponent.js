@@ -17,15 +17,11 @@ function MenuComponent() {
   useEffect(() => {
     const fetchNotification = async () => {
       console.log("token", token);
-      const data = await axios.post(
-        `http://localhost:3001/notification/unread`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const data = await axios.post(`notification/unread`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(data.data.length);
       setNotificationCount(data.data.length);
     };

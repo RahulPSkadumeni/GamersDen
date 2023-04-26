@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../state";
 import HeaderComponent from "../../components/HeaderComponent";
+import Axios from "../../utils/axios";
 function EditProfilepage() {
   const dispatch = useDispatch();
   const [file, setFile] = useState();
@@ -42,13 +43,9 @@ function EditProfilepage() {
 
     formData.append("occupation", event.occupation);
 
-    await axios.put(
-      ` http://localhost:3001/users/updateUser/${user._id}`,
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
+    await Axios.put(` users/updateUser/${user._id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
     // const fetchUser = async (userId) => {
     //   console.log("fetch posts");

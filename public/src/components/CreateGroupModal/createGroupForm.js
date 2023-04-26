@@ -74,6 +74,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Axios from "../../utils/axios";
 
 const CreateGroupForm = () => {
   const [groupName, setGroupName] = useState("");
@@ -92,15 +93,11 @@ const CreateGroupForm = () => {
 
     try {
       // Send a POST request to the server to create the new group
-      const response = await axios.post(
-        `http://localhost:3001/group/create/${user._id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await Axios.post(`group/create/${user._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log(response.data);
       // Reset the form after the group has been created

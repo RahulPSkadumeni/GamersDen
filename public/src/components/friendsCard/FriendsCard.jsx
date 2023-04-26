@@ -24,7 +24,7 @@ const FriendsCard = () => {
     <div>
       <ul className="rightbarFriendList">
         {friends.map((friend) => (
-          <li className="rigthBarFriend">
+          <li key={friend._id} className="rigthBarFriend">
             <div className="rightBarProfileImageContainer">
               <img
                 className="rightbarprofileImage"

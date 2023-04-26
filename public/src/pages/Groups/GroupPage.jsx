@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Axios from "../../utils/axios";
 const GroupHome = () => {
   const navigate = useNavigate();
   const { groupId } = useParams();
@@ -31,7 +32,7 @@ const GroupHome = () => {
 
   const fetchGroup = async () => {
     console.log(groupId);
-    let res = await axios.get(`/group/groupDetails/${groupId}/`);
+    let res = await Axios.get(`/group/groupDetails/${groupId}/`);
     console.log("group is", res.data.groupName);
     setGroup(res.data);
     console.log("group", group);
@@ -44,12 +45,9 @@ const GroupHome = () => {
     );
     if (confirmDelete) {
       console.log("groupId>>>>>>>>>>_______>>>>>", groupId);
-      let res = await axios.post(
-        `http://localhost:3001/group/leave/${groupId}`,
-        {
-          userId: user._id,
-        }
-      );
+      let res = await Axios.post(`group/leave/${groupId}`, {
+        userId: user._id,
+      });
 
       console.log(res);
       navigate("/");

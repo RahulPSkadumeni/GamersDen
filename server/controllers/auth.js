@@ -51,6 +51,10 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ msg: "User dose not exist." });
     }
+
+    if (!user.status) {
+      return res.status(400).json({ msg: "User blocked." });
+    }
     const isMatch = await bcrypt.compare(password, user.password); // check password and saved user password equal//
     /* if its not true */
     if (!isMatch) return res.status(400).json({ msg: "Invalid password" });
@@ -60,6 +64,12 @@ export const login = async (req, res) => {
 
     /* don"t want to send password back to front end*/
     delete user.password;
+    // res.header(
+    //   "Access-Control-Allow-Origin",
+    //   "https://new-branch-name.d2v8amzg8h8i4t.amplifyapp.com"
+    // );
+    // res.header("Access-Control-Allow-Credentials", "true");
+    // res.send("Login successful!");
     res.status(200).json({ token, user });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -70,14 +80,16 @@ export const login = async (req, res) => {
 
 export const OtpLogin = async (req, res) => {
   try {
-    /* destructure email and password from req.body */
+    /* destructure phoneNo and password from req.body */
     const { phoneNumber } = req.body;
     console.log(req.body);
     const user = await User.findOne({ phoneNumber: phoneNumber });
     if (!user) {
       return res.status(400).json({ msg: "User dose not exist." });
     }
-
+    if (!user.status) {
+      return res.status(400).json({ msg: "User blocked." });
+    }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     /* don"t want to send password back to front end*/
@@ -94,7 +106,7 @@ export const CheckPhone = async (req, res) => {
 
     console.log(phoneNo);
     const user = await User.findOne({ phoneNumber: phoneNo });
-    console.log(user);
+    console.log("user", user);
     if (!user) {
       return res.status(400).json({ msg: "User dose not exist." });
     }
