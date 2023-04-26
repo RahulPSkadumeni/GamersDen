@@ -107,7 +107,7 @@ app.post("createPosts", (req, res) => {
 });
 /*_____________Route______________middleware__________ controller(_actual logic)_____*/
 app.post(
-  "/register",
+  "api/register",
   register
 ); /* should be in route file but we ned upload variable so */
 
@@ -115,19 +115,19 @@ app.post(
 
 /* ROUTES */
 
-app.use("/auth", authRoutes);
+app.use("api/auth", authRoutes);
 
-app.use("/users", userRoutes);
+app.use("api/users", userRoutes);
 
-app.use("/posts", postRoutes);
-app.use("/search", searchRoute);
-app.use("/comment", commentRoutes);
-app.use("/chat", chatRoutes);
-app.use("/message", messageRoutes);
-app.use("/group", GroupRoutes);
-app.use("/admin", AdminRoutes);
+app.use("api/posts", postRoutes);
+app.use("api/search", searchRoute);
+app.use("api/comment", commentRoutes);
+app.use("api/chat", chatRoutes);
+app.use("api/message", messageRoutes);
+app.use("api/group", GroupRoutes);
+app.use("api/admin", AdminRoutes);
 app.use(
-  "/notification",
+  "api/notification",
 
   NotificationRoutes
 );
