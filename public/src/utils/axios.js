@@ -1,6 +1,6 @@
 import axios from "axios";
 const Axios = axios.create({
-  // baseURL: "http://localhost:3000",
+  // baseURL: "http://localhost:3000/api",
   baseURL: "https://gamersden.tech/api",
   //baseURL: "https://gamersden.tech/",
 
