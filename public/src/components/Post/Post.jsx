@@ -192,17 +192,18 @@ const Post = ({ post }) => {
         <div className="text-white text-left text-xl  w-10/12">{post?.des}</div>
         <div className="postCenter">
           <span className="text-left">
-            {/* {post?.des} */}
+            {post?.des}
             {/* After just a single round of Player Unknown's Battlegrounds Mobile,
             I was hooked. The game runs well and feels authentic. It even has
             that delicious tension that I love from the PC version of the…{" "} */}
           </span>
           <img
             className=" w-430 h-768"
-            src={post.image}
+            src={post?.image}
             // src="https://i0.wp.com/ramenswag.com/wp-content/uploads/2018/12/101-PlayerUnknown_s-Battlegrounds-HD-Wallpapers-_-Background-Images-...-1.jpg?resize=1024%2C576&ssl=1"
             alt=""
           />
+          {post.image}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

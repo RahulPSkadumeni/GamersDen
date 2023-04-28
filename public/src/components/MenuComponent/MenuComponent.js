@@ -17,7 +17,7 @@ function MenuComponent() {
   useEffect(() => {
     const fetchNotification = async () => {
       console.log("token", token);
-      const data = await axios.post(`notification/unread`, null, {
+      const data = await axios.post(`/api/notification/unread`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

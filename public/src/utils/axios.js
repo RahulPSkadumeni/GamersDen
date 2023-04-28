@@ -1,14 +1,7 @@
 import axios from "axios";
 const Axios = axios.create({
-  // baseURL: "http://localhost:3000/api",
-  baseURL: "https://gamersden.tech/api",
-  //baseURL: "https://gamersden.tech/",
-
-  // withCredentials: true,
-  // headers: {
-  //   "Content-type": "application/json",
-  //   Accept: "application/json",
-  // },
+  baseURL: "http://localhost:3000/api",
+  //baseURL: "https://gamersden.tech/api",
 });
 
 export default Axios;

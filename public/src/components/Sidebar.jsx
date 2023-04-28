@@ -16,9 +16,7 @@ const Sidebar = () => {
   const [open, SetOpen] = useState(true);
 
   return (
-    <div
-      className={`  mr-4 rounded-3xl relative ${open ? "w - 72" : "w - 20"} `}
-    >
+    <div className={`  mr-4   h-full top-0  ${open ? "w - 72" : "w - 20"} `}>
       {/* <BsArrowLeft
         className={`bg-white p-1 rounded-full text-3xl absolute right-3 top-9 border-dark-purple cursor-pointer  `}
         onClick={() => SetOpen(!open)}

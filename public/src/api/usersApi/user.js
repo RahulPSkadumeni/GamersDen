@@ -3,45 +3,16 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Axios from "../../utils/axios";
 import BASE_URL from "../../utils/baseurl";
-
-// export const adminlogin = async (email, password) => {
-//   const response = await fetch(BASE_URL + "/admin/login", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ email, password }),
-//   });
-//   return response.json();
-// };
 export const adminlogin = async (email, password) => {
-  try {
-    const response = await Axios.post(
-      "/admin/login",
-      {
-        email,
-        password,
-      }
-      // ,
-      // {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // }
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const response = await fetch(BASE_URL + "/admin/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  return response.json();
 };
 export const login = async (email, password) => {
-  const response = await axios.post(
-    "https://gamersden.tech/auth/login",
-    { email, password }
-    // ,{
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    // }
-  );
+  const response = await Axios.post("auth/login", { email, password });
   return response.data;
 };
 

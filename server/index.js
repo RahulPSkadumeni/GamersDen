@@ -96,7 +96,7 @@ const upload = multer({ storage });
 
 /*routes with  FILES*/
 
-app.post("createPosts", (req, res) => {
+app.post("/api/createPosts", (req, res) => {
   try {
     console.log("File uploaded successfully");
     res.send("File uploaded successfully");
@@ -107,7 +107,7 @@ app.post("createPosts", (req, res) => {
 });
 /*_____________Route______________middleware__________ controller(_actual logic)_____*/
 app.post(
-  "api/register",
+  "/api/register",
   register
 ); /* should be in route file but we ned upload variable so */
 
@@ -115,19 +115,19 @@ app.post(
 
 /* ROUTES */
 
-app.use("api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 
-app.use("api/users", userRoutes);
+app.use("/api/users", userRoutes);
 
-app.use("api/posts", postRoutes);
-app.use("api/search", searchRoute);
-app.use("api/comment", commentRoutes);
-app.use("api/chat", chatRoutes);
-app.use("api/message", messageRoutes);
-app.use("api/group", GroupRoutes);
-app.use("api/admin", AdminRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/search", searchRoute);
+app.use("/api/comment", commentRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/message", messageRoutes);
+app.use("/api/group", GroupRoutes);
+app.use("/api/admin", AdminRoutes);
 app.use(
-  "api/notification",
+  "/api/notification",
 
   NotificationRoutes
 );
