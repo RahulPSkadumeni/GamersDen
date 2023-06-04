@@ -4,8 +4,9 @@ import { login, OtpLogin, CheckPhone, CreateJwt } from "../controllers/auth.js";
 
 import { verifyToken } from "../middleware/authorization.js";
 /*setup routers  :  */
-console.log("hai auth root");
 const router = express.Router();
+// router("/login").post(verifyToken.lo)
+console.log("hai");
 router.post("/login", login);
 router.post("/otpLogin", OtpLogin);
 router.post("/checkPhone", CheckPhone);

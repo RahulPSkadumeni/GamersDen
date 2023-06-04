@@ -29,6 +29,7 @@ export const fetchAllPost = async () => {
   try {
     const { data } = await Axios.get(`users/allPost`);
     console.log("kkkk", data);
+
     return data;
   } catch (error) {
     console.log(error);

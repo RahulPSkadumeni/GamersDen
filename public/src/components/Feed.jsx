@@ -97,7 +97,7 @@ const Feed = ({ userId, isProfile = false }) => {
           onChange={(e) => setText(e.target.value)}
         /> */}
         {/* <Banner /> */}
-        <Share content={content} setContent={setContent} />
+        {/* <Share content={content} setContent={setContent} /> */}
         {/* <Create /> */}
         {posts &&
           posts?.map((p) => <Post className="max-w-44" key={p._id} post={p} />)}

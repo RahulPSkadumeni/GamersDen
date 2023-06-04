@@ -118,16 +118,27 @@ export const like = async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     if (!post.likes.includes(req.body.userId)) {
-      console.log(post);
-
       let postData = await Post.findOneAndUpdate(
         { _id: req.params.id },
         { $push: { likes: req.body.userId } },
         { new: true }
       );
-      console.log("postData");
-      console.log(postData);
-      console.log("postData");
+      console.log("first", postData);
+      if (postData.image) {
+        const getObjectParams = {
+          Bucket: bucketName,
+          Key: postData.image,
+        };
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
+        const command = new GetObjectCommand(getObjectParams);
+
+        const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
+        console.log("<<<<<<<<<<<<<<<", url);
+        postData.image = url;
+        console.log(">>>>>>>>>>>>>>>", postData);
+      }
+
       res.status(200).json(postData);
     } else {
       let postData = await Post.findOneAndUpdate(
@@ -135,9 +146,21 @@ export const like = async (req, res) => {
         { $pull: { likes: req.body.userId } },
         { new: true }
       );
-      console.log("postData");
-      console.log(postData);
-      console.log("postData");
+      if (postData.image) {
+        const getObjectParams = {
+          Bucket: bucketName,
+          Key: postData.image,
+        };
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
+        const command = new GetObjectCommand(getObjectParams);
+
+        const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
+        console.log("<<<<<<<<<<<<<<<", url);
+        postData.image = url;
+        console.log(">>>>>>>>>>>>>>>", postData);
+      }
+
       res.status(200).json(postData);
     }
   } catch (error) {

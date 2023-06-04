@@ -236,7 +236,7 @@ router.get("/profile/:id", async (req, res) => {
       for (const post of posts) {
         const getObjectParams = {
           Bucket: bucketName,
-          Key: post.image,
+          Key: post.image || post.picturePath,
         };
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>HHHHHHHHHH<<<<<<<<<<<<<<<<<");
         const command = new GetObjectCommand(getObjectParams);

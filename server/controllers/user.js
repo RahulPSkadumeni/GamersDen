@@ -277,7 +277,7 @@ export const getUserFriends = async (req, res) => {
         const url = await getSignedUrl(s3Client, command, { expiresIn: 60 });
         // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<");
         console.log("<<<<<<<<<<<<<<<", url);
-        friend.picturePath = url;
+        // friend.picturePath.a = url;
       }
 
       // console.log(">>>>>>>>>>>>>>>", post);

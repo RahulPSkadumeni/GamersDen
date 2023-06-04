@@ -21,11 +21,11 @@ const BodyComponent = () => {
     //   <RightbarHome />
     // </div>
     <div className="flex flex-col md:flex-row w-full h-screen">
-      <Sidebar className="  md:w-1/5 h-full fixed z-50 top-0 " />
+      {/* <Sidebar className="  md:w-1/5 h-full fixed z-50 top-0 " /> */}
       <div className="flex-grow md:w-3/5 h-full">
         <Feed className="h-full" />
       </div>
-      <RightbarHome className="flex flex-col md:flex-row w-full h-screen" />
+      {/* <RightbarHome className="flex flex-col md:flex-row w-full h-screen" /> */}
     </div>
   );
 };

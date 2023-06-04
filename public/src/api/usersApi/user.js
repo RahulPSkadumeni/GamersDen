@@ -52,7 +52,7 @@ export const OtpLogin = async (phoneNo) => {
 
 export const checkPhone = async (phoneNo) => {
   console.log("inside checkphone api", phoneNo);
-  const response = await fetch(BASE_URL + "auth/checkphone", {
+  const response = await fetch(BASE_URL + "/auth/checkphone", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ phoneNo }),

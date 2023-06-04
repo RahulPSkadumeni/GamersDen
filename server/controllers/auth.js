@@ -64,12 +64,6 @@ export const login = async (req, res) => {
 
     /* don"t want to send password back to front end*/
     delete user.password;
-    // res.header(
-    //   "Access-Control-Allow-Origin",
-    //   "https://new-branch-name.d2v8amzg8h8i4t.amplifyapp.com"
-    // );
-    // res.header("Access-Control-Allow-Credentials", "true");
-    // res.send("Login successful!");
     res.status(200).json({ token, user });
   } catch (err) {
     res.status(500).json({ error: err.message });
